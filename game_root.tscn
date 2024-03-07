@@ -1,0 +1,155 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqh662ausg07r"]
+
+[ext_resource type="Texture2D" uid="uid://dh0y0apoyj478" path="res://assets/graphics/bg/farground_mountains.png" id="1_dpq16"]
+[ext_resource type="Script" path="res://game_root.gd" id="1_ldr46"]
+[ext_resource type="Texture2D" uid="uid://b5g5oepp2c45g" path="res://assets/graphics/bg/midground_mountains.png" id="2_n6mc0"]
+[ext_resource type="Texture2D" uid="uid://dk2pft7sgbad0" path="res://assets/graphics/bg/foreground_mountains.png" id="3_uhr8r"]
+[ext_resource type="Texture2D" uid="uid://cmrvx87p308es" path="res://assets/graphics/bg/mid_ground_cloud_1.png" id="4_oxql7"]
+[ext_resource type="Texture2D" uid="uid://krsmgmlxcst5" path="res://assets/graphics/bg/mid_ground_cloud_2.png" id="5_sh058"]
+[ext_resource type="FontFile" uid="uid://d4d8gqeaek532" path="res://assets/fonts/animeace.ttf" id="9_ulq0i"]
+
+[sub_resource type="Animation" id="Animation_2scfl"]
+resource_name = "Stage_Display"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"init_level_play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Stage_counter:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ea6py"]
+_data = {
+"Stage_Display": SubResource("Animation_2scfl")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mpr31"]
+size = Vector2(40, 1069)
+
+[node name="GameRoot" type="Node2D"]
+script = ExtResource("1_ldr46")
+
+[node name="MountainDew" type="Node" parent="."]
+
+[node name="FargroundMountains" type="Sprite2D" parent="MountainDew"]
+position = Vector2(1024, 764)
+scale = Vector2(1, 1.91515)
+texture = ExtResource("1_dpq16")
+
+[node name="MidgroundMountains" type="Sprite2D" parent="MountainDew"]
+position = Vector2(1024, 952)
+scale = Vector2(1, 2.15126)
+texture = ExtResource("2_n6mc0")
+
+[node name="ForegroundMountains" type="Sprite2D" parent="MountainDew"]
+position = Vector2(1024, 984)
+scale = Vector2(1, 1.76147)
+texture = ExtResource("3_uhr8r")
+
+[node name="FargroundMountains2" type="Sprite2D" parent="MountainDew"]
+position = Vector2(3072, 760)
+scale = Vector2(1, 1.9394)
+texture = ExtResource("1_dpq16")
+
+[node name="MidgroundMountains2" type="Sprite2D" parent="MountainDew"]
+position = Vector2(3072, 952)
+scale = Vector2(1, 2.15126)
+texture = ExtResource("2_n6mc0")
+
+[node name="ForegroundMountains2" type="Sprite2D" parent="MountainDew"]
+position = Vector2(3072, 984)
+scale = Vector2(1, 1.76147)
+texture = ExtResource("3_uhr8r")
+
+[node name="CloudF" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CloudF"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="CloudF/ParallaxBackground"]
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="MidGroundCloud1" type="Sprite2D" parent="CloudF/ParallaxBackground/ParallaxLayer"]
+position = Vector2(1032, 192)
+scale = Vector2(1, 1.30739)
+texture = ExtResource("4_oxql7")
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="CloudF/ParallaxBackground/ParallaxLayer"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="CloudF/ParallaxBackground/ParallaxLayer/ParallaxBackground2"]
+motion_scale = Vector2(0.75, 1)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="MidGroundCloud2" type="Sprite2D" parent="CloudF/ParallaxBackground/ParallaxLayer/ParallaxBackground2/ParallaxLayer"]
+position = Vector2(1040, 536)
+scale = Vector2(1, 0.978903)
+texture = ExtResource("5_sh058")
+
+[node name="MidGroundCloud2" type="Sprite2D" parent="CloudF/ParallaxBackground/ParallaxLayer"]
+position = Vector2(1032, -136)
+rotation = 3.14091
+scale = Vector2(1, 0.762391)
+texture = ExtResource("4_oxql7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ea6py")
+}
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Kills" type="Label" parent="HUD"]
+offset_left = 1544.0
+offset_top = 32.0
+offset_right = 1882.0
+offset_bottom = 99.0
+theme_override_colors/font_color = Color(0.788235, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("9_ulq0i")
+theme_override_font_sizes/font_size = 60
+text = "Kills = 0"
+
+[node name="Stage_counter" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 56.0
+offset_right = 346.0
+offset_bottom = 139.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_ulq0i")
+theme_override_font_sizes/font_size = 60
+text = "Stage = 
+"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Triggers" type="Node" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Triggers"]
+collision_layer = 17
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/Area2D"]
+position = Vector2(3224, 544)
+shape = SubResource("RectangleShape2D_mpr31")
+
+[connection signal="area_entered" from="Triggers/Area2D" to="." method="_on_Area2D_area_entered"]

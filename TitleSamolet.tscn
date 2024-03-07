@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvg6sp28qnmmv"]
+
+[ext_resource type="Script" path="res://TitleSamolet.gd" id="1_fhqvx"]
+[ext_resource type="Texture2D" uid="uid://cxnc6yftisei6" path="res://assets/graphics/title/title.png" id="1_xcsv5"]
+[ext_resource type="AudioStream" uid="uid://dot4cs83kl1rk" path="res://assets/audio/InStormAndSunshine.ogg" id="2_f7ba4"]
+[ext_resource type="FontFile" uid="uid://d4d8gqeaek532" path="res://assets/fonts/animeace.ttf" id="4_bruae"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fhqvx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_xcsv5")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_f7ba4")
+autoplay = true
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 523.0
+offset_top = 800.0
+offset_right = 1358.0
+offset_bottom = 950.0
+theme_override_colors/font_color = Color(0.984314, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("4_bruae")
+theme_override_font_sizes/font_size = 128
+text = "Fuck off?"
+flat = true
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 499.0
+offset_right = 1428.0
+offset_bottom = 649.0
+theme_override_colors/font_color = Color(0.811765, 0.941176, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("4_bruae")
+theme_override_font_sizes/font_size = 128
+text = "Let's a go!
+"
+flat = true
+
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
