@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bck4g6cc7gxy2"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_u5brk"]
+[ext_resource type="Texture2D" uid="uid://c4htgcuij23fu" path="res://assets/graphics/player/Player128_blue.png" id="2_5bo7v"]
+
+[node name="PlayerRoot" type="Node2D"]
+script = ExtResource("1_u5brk")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_5bo7v")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 21
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-8, 24, 0, 32, 32, 32, 40, 24, 64, 8, 32, -8, 24, -24, 8, -24, -24, 0, -48, -32, -64, -32, -56, -24, -48, 0, -56, 0, -48, 8, -64, 16, -32, 16, -48, 32, -16, 32)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

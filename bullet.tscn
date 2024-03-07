@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cpmjbgd1yxvyk"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_4h37s"]
+[ext_resource type="Texture2D" uid="uid://bmsbn7n07tguv" path="res://assets/graphics/bullet/bullet.png" id="1_13tlr"]
+[ext_resource type="Texture2D" uid="uid://3wadqp6ewwk8" path="res://assets/graphics/bullet/flame1.png" id="2_ycg6r"]
+[ext_resource type="Texture2D" uid="uid://cre72j6pkd68v" path="res://assets/graphics/bullet/flame2.png" id="3_ggrww"]
+[ext_resource type="Texture2D" uid="uid://dfdmbsg4hlefv" path="res://assets/graphics/bullet/flame.png" id="4_g6oox"]
+[ext_resource type="AudioStream" uid="uid://dcgdx8ojw3m6l" path="res://assets/audio/rocket/Rocket.wav" id="5_y0ujf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ssays"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ycg6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ggrww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_g6oox")
+}],
+"loop": true,
+"name": &"Flame",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2p4xp"]
+size = Vector2(48, 16)
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_4h37s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_13tlr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_ssays")
+animation = &"Flame"
+frame = 2
+frame_progress = 0.163293
+offset = Vector2(-20, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 9
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_2p4xp")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_y0ujf")
+autoplay = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
