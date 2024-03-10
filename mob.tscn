@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://dq5ftmmtapqpg"]
+
+[ext_resource type="Texture2D" uid="uid://chg6fuv5n6j8b" path="res://art/enemyFlyingAlt_1.png" id="1_3nh7u"]
+[ext_resource type="Script" path="res://mob.gd" id="1_ebpeh"]
+[ext_resource type="Texture2D" uid="uid://dn1k20w8iy55u" path="res://art/enemyFlyingAlt_2.png" id="2_cndcs"]
+[ext_resource type="Texture2D" uid="uid://b3urxuhjhonkf" path="res://art/enemySwimming_1.png" id="3_xd5hh"]
+[ext_resource type="Texture2D" uid="uid://dc8r4orb4bh6d" path="res://art/enemySwimming_2.png" id="4_xadxh"]
+[ext_resource type="Texture2D" uid="uid://b33rf4ua50s5u" path="res://art/enemyWalking_1.png" id="5_07wc2"]
+[ext_resource type="Texture2D" uid="uid://c5f5ayjfiw6d7" path="res://art/enemyWalking_2.png" id="6_6fsbb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ludpm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3nh7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cndcs")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xd5hh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xadxh")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_07wc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6fsbb")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0flk4"]
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_ebpeh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_ludpm")
+animation = &"fly"
+frame_progress = 0.365339
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.565487
+shape = SubResource("CapsuleShape2D_0flk4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(12, 0)
+scale = Vector2(2.6, 3.6)
