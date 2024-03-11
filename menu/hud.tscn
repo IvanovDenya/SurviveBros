@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bykmj3v0gofwe"]
 
-[ext_resource type="Script" path="res://HUD.gd" id="1_yp6hk"]
+[ext_resource type="Script" path="res://menu/HUD.gd" id="1_yp6hk"]
 [ext_resource type="FontFile" uid="uid://b5hve76h7ondq" path="res://fonts/Xolonium-Regular.ttf" id="2_u71yk"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_y1vsx"]
@@ -40,7 +40,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_u71yk")
 theme_override_font_sizes/font_size = 64
-text = "Doodge the creeps!"
+text = "Dodge the creeps!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
