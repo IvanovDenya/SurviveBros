@@ -9,9 +9,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_muwqy"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2, -1, 0, 0, 0, 0, 478, 0, 0, 0, 0, 0, 478, 719, 0, 0, 0, 0, -3, 720, 0, 0, 0, 0, -2, -1)
+"points": PackedVector2Array(0, 0, 0, 0, -2, -1, 0, 0, 0, 0, 478, 0, 0, 0, 0, 0, 1919, 2, 0, 0, 0, 0, 1922, 1082, 0, 0, 0, 0, -2, 1082, 0, 0, 0, 0, -2, -1)
 }
-point_count = 5
+point_count = 6
 
 [node name="Main" type="Node"]
 script = ExtResource("1_dkmla")
@@ -26,7 +26,7 @@ grow_vertical = 2
 color = Color(0, 0.52549, 0.52549, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_pcdji")]
-position = Vector2(239, 449)
+position = Vector2(919, 528)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -38,7 +38,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(240, 450)
+position = Vector2(916, 533)
 
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_muwqy")
