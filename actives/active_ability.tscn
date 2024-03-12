@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdsjgnn08oog4"]
+
+[ext_resource type="Script" path="res://actives/active_ability.gd" id="1_4v5uv"]
+
+[node name="ActiveAbility" type="Node"]
+script = ExtResource("1_4v5uv")
+
+[node name="AbilityTimer" type="Timer" parent="."]
+one_shot = true
