@@ -50,13 +50,9 @@ animations = [{
 radius = 31.8247
 height = 72.5474
 
-[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+[node name="Mob" type="CharacterBody2D" groups=["Mob"]]
 collision_layer = 4
 collision_mask = 10
-mass = 100.0
-gravity_scale = 0.0
-max_contacts_reported = 2
-contact_monitor = true
 script = ExtResource("1_ebpeh")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -86,5 +82,4 @@ scale = Vector2(0.4, 0.25)
 
 [node name="HpController" parent="." instance=ExtResource("9_0kf8y")]
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="hp_zero" from="HpController" to="." method="_on_hp_controller_hp_zero"]

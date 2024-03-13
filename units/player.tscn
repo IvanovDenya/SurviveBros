@@ -36,7 +36,7 @@ animations = [{
 radius = 27.0
 height = 68.0
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_h0hgi")
@@ -51,5 +51,3 @@ animation = &"walk"
 shape = SubResource("CapsuleShape2D_nm205")
 
 [node name="Dash" parent="." instance=ExtResource("6_0tsuv")]
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

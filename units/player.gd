@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 signal hit
 
 @export var speed = 400
@@ -21,15 +21,7 @@ func _process(delta):
 		$Dash.execute(self)
 	
 	if state == "normal":
-		current_velocity = Vector2.ZERO
-		if Input.is_action_pressed("move_right"):
-			current_velocity.x += 1
-		if Input.is_action_pressed("move_left"):
-			current_velocity.x -= 1
-		if Input.is_action_pressed("move_down"):
-			current_velocity.y += 1
-		if Input.is_action_pressed("move_up"):
-			current_velocity.y -= 1
+		movement()
 	
 	var speed_used = (dash_speed if state == "dashing" else speed)
 	if current_velocity.length() > 0:
@@ -48,6 +40,13 @@ func _process(delta):
 	elif current_velocity.y != 0:
 		$AnimatedSprite2D.animation = "up"
 		$AnimatedSprite2D.flip_v = current_velocity.y > 0
+
+func movement():
+	var x_move = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	var y_move = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	var move = Vector2(x_move,y_move)
+	velocity = move.normalized() * speed
+	move_and_slide() 
 
 func _on_body_entered(_body):
 	hide()

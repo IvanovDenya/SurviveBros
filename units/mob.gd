@@ -1,6 +1,9 @@
-extends RigidBody2D
+extends CharacterBody2D
 
 var max_hp = 1000
+@export var movement_speed = 100
+
+@onready var player = get_tree().get_first_node_in_group("Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,8 +16,9 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
-
+	var direction = global_position.direction_to(player.global_position)
+	velocity = direction * movement_speed
+	move_and_slide()
 
 func _on_body_entered(body):
 	$HpController.modify_hp(body.damage, GlobalInfo.HP_modifier_type.Flat)
