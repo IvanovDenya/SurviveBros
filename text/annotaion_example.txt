@@ -1,0 +1,19 @@
+Для метода
+func calculate_recieved_damage(enemy_unit, projectile)
+    ...
+    return dmg_total
+
+Пример аннотации:
+
+# Calculates the amount of damage enemy unit will recieve from projectile
+# Applies enemy resistance to get the final damage number
+# Does not apply damage to enemy
+# Parameters:
+#	enemy_unit - Enemy (.tscn не пишем) - Enemy unit for whom the amount of projectile damage is calculated
+#	projectile - Projectile - Projectile that has his the enemy unit
+# Returns:
+#	Int - The amount of damage that the enemy should recieve
+
+func calculate_recieved_damage(enemy_unit, projectile)
+    ...
+    return dmg_total

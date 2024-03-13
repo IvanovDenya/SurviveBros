@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://x0vxm6ypp50w"]
+
+[ext_resource type="PackedScene" uid="uid://nr1gub46p85o" path="res://projectiles/player_projectile.tscn" id="1_0gq15"]
+[ext_resource type="Texture2D" uid="uid://b33rf4ua50s5u" path="res://art/enemyWalking_1.png" id="2_qnfmv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5tvf4"]
+height = 26.0
+
+[node name="Bullet_1" instance=ExtResource("1_0gq15")]
+mass = 0.01
+max_contacts_reported = 1
+contact_monitor = true
+travel_speed = 400
+damage = 500
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_qnfmv")
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5tvf4")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(-9.53674e-07, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvpfma7nwo0kr"]
+
+[ext_resource type="PackedScene" uid="uid://cdsjgnn08oog4" path="res://actives/active_ability.tscn" id="1_qvlb7"]
+[ext_resource type="Script" path="res://actives/dash.gd" id="2_cqf3s"]
+
+[node name="Dash" instance=ExtResource("1_qvlb7")]
+script = ExtResource("2_cqf3s")
+
+[node name="EndDashTimer" type="Timer" parent="." index="1"]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="EndDashTimer" to="." method="_on_end_dash_timer_timeout"]
