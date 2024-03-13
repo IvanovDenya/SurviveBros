@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://campqxono68w8"]
+
+[ext_resource type="Script" path="res://logic/global_info.gd" id="1_sglfm"]
+
+[node name="GlobalInfo" type="Node"]
+script = ExtResource("1_sglfm")

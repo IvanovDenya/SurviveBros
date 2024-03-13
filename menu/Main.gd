@@ -55,8 +55,9 @@ func _on_mob_timer_timeout():
 
 	# Add some randomness to the direction.
 	direction += randf_range(-PI / 4, PI / 4)
-	mob.rotation = direction
-
+	
+	var sprite = mob.find_child("Sprite", false)
+	sprite.rotation = direction
 	# Choose the velocity for the mob.
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
 	mob.linear_velocity = velocity.rotated(direction)

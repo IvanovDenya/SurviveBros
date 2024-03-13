@@ -7,9 +7,11 @@
 height = 26.0
 
 [node name="Bullet_1" instance=ExtResource("1_0gq15")]
+mass = 0.01
 max_contacts_reported = 1
 contact_monitor = true
 travel_speed = 400
+damage = 500
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(0.2, 0.2)

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dheuhn4kvwdb4"]
+
+[ext_resource type="Texture2D" uid="uid://hv2qjgb7ciku" path="res://art/hp_bar_2.png" id="1_j2hfo"]
+[ext_resource type="Texture2D" uid="uid://c26hhy31c0sb5" path="res://art/hp_bar_1.png" id="2_jyqpk"]
+
+[node name="HP_Bar" type="TextureProgressBar"]
+offset_left = -133.0
+offset_top = -23.0
+offset_right = 133.0
+offset_bottom = 27.0
+max_value = 10000.0
+allow_greater = true
+allow_lesser = true
+texture_under = ExtResource("1_j2hfo")
+texture_progress = ExtResource("2_jyqpk")

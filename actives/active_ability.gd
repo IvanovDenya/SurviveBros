@@ -7,11 +7,11 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 	
 #Basic method for executing the ability 
 #Paremeters:
 #	user: user of the ability
-func execute(user):
+func execute(_user):
 	pass
