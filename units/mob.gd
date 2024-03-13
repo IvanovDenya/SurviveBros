@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 var max_hp = 1000
 @export var movement_speed = 100
@@ -17,11 +17,12 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	var direction = global_position.direction_to(player.global_position)
-	velocity = direction * movement_speed
-	move_and_slide()
+	linear_velocity = direction * movement_speed
+	
 
 func _on_body_entered(body):
-	$HpController.modify_hp(body.damage, GlobalInfo.HP_modifier_type.Flat)
+	if body != player:
+		$HpController.modify_hp(body.damage, GlobalInfo.HP_modifier_type.Flat)
 #Mob dead
 func _on_hp_controller_hp_zero():
 	queue_free()

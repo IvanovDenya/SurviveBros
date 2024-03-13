@@ -52,9 +52,7 @@ height = 72.5474
 
 [node name="Mob" type="RigidBody2D" groups=["Mob"]]
 collision_layer = 4
-collision_mask = 8
-max_contacts_reported = 2
-contact_monitor = true
+collision_mask = 10
 script = ExtResource("1_ebpeh")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
