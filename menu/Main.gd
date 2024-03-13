@@ -16,7 +16,6 @@ func new_game():
 
 func game_over():
 	$ScoreTimer.stop()
-	$MobTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
 	$Shoot_Timer.stop()

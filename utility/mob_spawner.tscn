@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://caet17xd7u43a"]
+[gd_scene load_steps=5 format=3 uid="uid://caet17xd7u43a"]
 
 [ext_resource type="Script" path="res://utility/mob_spawner.gd" id="1_x7y3s"]
+[ext_resource type="PackedScene" uid="uid://dq5ftmmtapqpg" path="res://units/mob.tscn" id="2_nhl42"]
 [ext_resource type="Script" path="res://utility/spawn_info.gd" id="2_qjp20"]
 
 [sub_resource type="Resource" id="Resource_pg08h"]
 script = ExtResource("2_qjp20")
 time_start = 0
-time_end = 0
-mob_num = 0
+time_end = 60
+mob = ExtResource("2_nhl42")
+mob_num = 1
 mob_spawn_delay = 0
 
 [node name="MobSpawner" type="Node2D"]

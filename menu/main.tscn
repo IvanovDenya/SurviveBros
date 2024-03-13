@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca7lb6exwfg3y"]
+[gd_scene load_steps=7 format=3 uid="uid://ca7lb6exwfg3y"]
 
 [ext_resource type="Script" path="res://menu/Main.gd" id="1_dkmla"]
-[ext_resource type="PackedScene" uid="uid://dq5ftmmtapqpg" path="res://units/mob.tscn" id="2_0rf3q"]
 [ext_resource type="PackedScene" uid="uid://cd5oocw5teo6p" path="res://units/player.tscn" id="3_pcdji"]
 [ext_resource type="PackedScene" uid="uid://bykmj3v0gofwe" path="res://menu/hud.tscn" id="4_rh2o6"]
 [ext_resource type="AudioStream" uid="uid://c6i8kaw8k8euv" path="res://art/House In a Forest Loop.ogg" id="5_6d3v7"]
@@ -42,9 +41,8 @@ stream = ExtResource("6_aelrn")
 [node name="Shoot_Timer" type="Timer" parent="."]
 wait_time = 0.1
 
-[node name="Mob" parent="." instance=ExtResource("2_0rf3q")]
-
 [node name="MobSpawner" parent="." instance=ExtResource("7_av77f")]
+time = 1
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

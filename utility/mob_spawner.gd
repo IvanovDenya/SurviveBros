@@ -2,9 +2,10 @@ extends Node2D
 
 @export var spawns: Array[Spawn_info] = []
 
-@onready var player = get_tree().get_first_node_in_group("player")
+@onready var player = get_tree().get_first_node_in_group("Player")
 
 @export var time = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -16,19 +17,19 @@ func _process(delta):
 
 func _on_timer_timeout():
 	time += 1
-	var enemy_spawns = spawns
-	for i in enemy_spawns:
+	var mob_spawns = spawns
+	for i in mob_spawns:
 		if time >= i.time_start and time <= i.time_end:
-			if i.spawn_delay_counter < i.enemy_spawn_delay:
+			if i.spawn_delay_counter < i.mob_spawn_delay:
 				i.spawn_delay_counter += 1
 			else:
 				i.spawn_delay_counter = 0
-				var new_enemy = i.enemy
+				var new_mob = i.mob
 				var counter = 0
-				while  counter < i.enemy_num:
-					var enemy_spawn = new_enemy.instantiate()
-					enemy_spawn.global_position = get_random_position()
-					add_child(enemy_spawn)
+				while  counter < i.mob_num:
+					var mob_spawn = new_mob.instantiate()
+					mob_spawn.global_position = get_random_position()
+					add_child(mob_spawn)
 					counter += 1
 
 func get_random_position():
