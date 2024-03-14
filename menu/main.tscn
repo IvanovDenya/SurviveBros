@@ -44,7 +44,6 @@ stream = ExtResource("6_aelrn")
 wait_time = 0.1
 
 [node name="MobSpawner" parent="." instance=ExtResource("7_av77f")]
-time = 1
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

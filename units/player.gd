@@ -16,7 +16,7 @@ func _ready():
 # Parameters :
 #	delta - int - time elapsed from previous call (in ms)
 #ETODO Decompose - слишком много всего в одном методе, как минимум 3 доп. метода напрашиваются
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_pressed("player_dash"):
 		$Dash.execute(self)
 	var speed_used = (dash_speed if state == "dashing" else speed)
@@ -44,6 +44,7 @@ func _process(delta):
 	velocity = current_velocity
 	move_and_slide() 
 
+#ETODO Annotation
 func calculate_current_velocity():
 	var x_move = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var y_move = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")

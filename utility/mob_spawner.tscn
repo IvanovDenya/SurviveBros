@@ -4,17 +4,17 @@
 [ext_resource type="PackedScene" uid="uid://dq5ftmmtapqpg" path="res://units/mob.tscn" id="2_nhl42"]
 [ext_resource type="Script" path="res://utility/spawn_info.gd" id="2_qjp20"]
 
-[sub_resource type="Resource" id="Resource_pg08h"]
+[sub_resource type="Resource" id="Resource_x2wg6"]
 script = ExtResource("2_qjp20")
-time_start = 0
+time_start = 1
 time_end = 60
 mob = ExtResource("2_nhl42")
-mob_num = 1
-mob_spawn_delay = 0
+mob_num = 11
+mob_spawn_delay = 2
 
 [node name="MobSpawner" type="Node2D"]
 script = ExtResource("1_x7y3s")
-spawns = Array[ExtResource("2_qjp20")]([SubResource("Resource_pg08h")])
+mob_spawn_records = Array[ExtResource("2_qjp20")]([SubResource("Resource_x2wg6")])
 
 [node name="MobTimer" type="Timer" parent="."]
 
