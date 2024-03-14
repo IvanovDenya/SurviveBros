@@ -22,24 +22,22 @@ func _process(delta):
 	
 	if state == "normal":
 		movement()
+		player_animation()
 	
 	var speed_used = (dash_speed if state == "dashing" else speed)
-	if current_velocity.length() > 0:
-		current_velocity = current_velocity.normalized() * speed_used
+	current_velocity = current_velocity.normalized() * speed_used
+	
+func player_animation():
+	if velocity.length() > 0:
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
-	position += current_velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+	
+	if velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
+	else:
+		$AnimatedSprite2D.flip_h = false
 
-	if current_velocity.x != 0:
-		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_v = false
-	# See the note below about boolean assignment.
-		$AnimatedSprite2D.flip_h = current_velocity.x < 0
-	elif current_velocity.y != 0:
-		$AnimatedSprite2D.animation = "up"
-		$AnimatedSprite2D.flip_v = current_velocity.y > 0
 
 func movement():
 	var x_move = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -47,6 +45,8 @@ func movement():
 	var move = Vector2(x_move,y_move)
 	velocity = move.normalized() * speed
 	move_and_slide() 
+	
+	
 
 func _on_body_entered(_body):
 	hide()
