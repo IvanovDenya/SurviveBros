@@ -7,8 +7,8 @@ var max_hp = 1000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var mob_types = $Sprite.sprite_frames.get_animation_names()
-	$Sprite.play(mob_types[randi() % mob_types.size()])
+	var mob_types = $AnimatedSprite2D.sprite_frames.get_animation_names()
+	$AnimatedSprite2D.play(mob_types[randi() % mob_types.size()])
 	$HpController.set_initial_hp($HpBar, max_hp)
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
@@ -18,6 +18,19 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func _process(_delta):
 	var direction = global_position.direction_to(player.global_position)
 	linear_velocity = direction * movement_speed
+	mob_animation()
+	
+func mob_animation():
+	if linear_velocity.length() > 0:
+		linear_velocity = linear_velocity.normalized() * movement_speed
+		$AnimatedSprite2D.play()
+	else:
+		$AnimatedSprite2D.stop()
+	
+	if linear_velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
+	else:
+		$AnimatedSprite2D.flip_h = false
 	
 
 func _on_body_entered(body):

@@ -25,24 +25,26 @@ func _process(_delta):
 		calculate_current_velocity()
 	else:
 		current_velocity = current_velocity.normalized() * speed_used
-	if current_velocity.length() > 0:	
+	
+	position += current_velocity * _delta
+	position = position.clamp(Vector2.ZERO, screen_size)
+	
+		
+	velocity = current_velocity
+	move_and_slide()
+	player_animation()
+	
+func player_animation():
+	if velocity.length() > 0:
+		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
-	#position += current_velocity * delta
-	#position = position.clamp(Vector2.ZERO, screen_size)
-	
-	if current_velocity.x != 0:
-		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_v = false
-	# See the note below about boolean assignment.
-		$AnimatedSprite2D.flip_h = current_velocity.x < 0
-	elif current_velocity.y != 0:
-		$AnimatedSprite2D.animation = "up"
-		$AnimatedSprite2D.flip_v = current_velocity.y > 0
 		
-	velocity = current_velocity
-	move_and_slide() 
+	if velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
+	else:
+		$AnimatedSprite2D.flip_h = false
 
 #ETODO Annotation
 func calculate_current_velocity():
