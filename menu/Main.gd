@@ -35,8 +35,7 @@ func _on_start_timer_timeout():
 	$Music.play()
 	$MobSpawner/MobTimer.start()
 	if (current_game_state == GameState.Start):
-		current_game_state = GameState.Running
-		
+		current_game_state = GameState.Running		
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca7lb6exwfg3y"]
+[gd_scene load_steps=13 format=3 uid="uid://ca7lb6exwfg3y"]
 
 [ext_resource type="Script" path="res://menu/Main.gd" id="1_dkmla"]
 [ext_resource type="Texture2D" uid="uid://jldf75jb7oad" path="res://art/dirt_full_new.png" id="2_qexsx"]
@@ -8,17 +8,30 @@
 [ext_resource type="AudioStream" uid="uid://8aabhnsb33y7" path="res://art/gameover.wav" id="6_aelrn"]
 [ext_resource type="PackedScene" uid="uid://caet17xd7u43a" path="res://utility/mob_spawner.tscn" id="7_av77f"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5fk42"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhpii"]
+size = Vector2(26917.8, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f86w"]
+size = Vector2(26688, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xft78"]
+size = Vector2(59, 20207)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ao6gc"]
+size = Vector2(41, 19462.5)
+
 [node name="Main" type="Node"]
 script = ExtResource("1_dkmla")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(-419.5, 283)
 scale = Vector2(1.72425, 1.2805)
 texture = ExtResource("2_qexsx")
 region_enabled = true
-region_rect = Rect2(0, 0, 6000, 6000)
+region_rect = Rect2(0, 0, 15000, 15000)
 
 [node name="Player" parent="." instance=ExtResource("3_pcdji")]
 position = Vector2(919, 528)
@@ -44,6 +57,26 @@ stream = ExtResource("6_aelrn")
 wait_time = 0.1
 
 [node name="MobSpawner" parent="." instance=ExtResource("7_av77f")]
+
+[node name="InvisibleBorders" type="StaticBody2D" parent="."]
+disable_mode = 1
+physics_material_override = SubResource("PhysicsMaterial_5fk42")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleBorders"]
+position = Vector2(1, -9605.5)
+shape = SubResource("RectangleShape2D_dhpii")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="InvisibleBorders"]
+position = Vector2(24, 9604.5)
+shape = SubResource("RectangleShape2D_1f86w")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="InvisibleBorders"]
+position = Vector2(-12928.5, 14)
+shape = SubResource("RectangleShape2D_xft78")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="InvisibleBorders"]
+position = Vector2(12919.5, 127.25)
+shape = SubResource("RectangleShape2D_ao6gc")
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

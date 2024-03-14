@@ -1,15 +1,15 @@
 extends CharacterBody2D
 signal hit
 
-@export var speed = 800
+@export var speed = 300
 @export var dash_speed = 3000
-var screen_size
+#var screen_size
 var current_velocity = Vector2.ZERO
 @export var state = "normal"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	screen_size = get_viewport_rect().size
+	#screen_size = get_viewport_rect().size
 	hide()
 
 # Called every frame
@@ -26,8 +26,8 @@ func _process(_delta):
 	else:
 		current_velocity = current_velocity.normalized() * speed_used
 	
-	position += current_velocity * _delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+	#position += current_velocity * _delta
+	#position = position.clamp(Vector2.ZERO, screen_size)
 	
 		
 	velocity = current_velocity

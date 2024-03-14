@@ -34,13 +34,15 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_iqtam")
 animation = &"walk"
 
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_left = -6000
-limit_top = -6000
-limit_right = 6000
-limit_bottom = 6000
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_nm205")
 
 [node name="Dash" parent="." instance=ExtResource("6_0tsuv")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -12900
+limit_top = -9600
+limit_right = 12900
+limit_bottom = 9600
+limit_smoothed = true
+editor_draw_limits = true
