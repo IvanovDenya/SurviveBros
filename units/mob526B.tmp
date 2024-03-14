@@ -1,12 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://dq5ftmmtapqpg"]
+[gd_scene load_steps=12 format=3 uid="uid://dq5ftmmtapqpg"]
 
 [ext_resource type="Texture2D" uid="uid://chg6fuv5n6j8b" path="res://art/enemyFlyingAlt_1.png" id="1_3nh7u"]
 [ext_resource type="Script" path="res://units/mob.gd" id="1_ebpeh"]
 [ext_resource type="Texture2D" uid="uid://dn1k20w8iy55u" path="res://art/enemyFlyingAlt_2.png" id="2_cndcs"]
+[ext_resource type="Texture2D" uid="uid://b3urxuhjhonkf" path="res://art/enemySwimming_1.png" id="3_xd5hh"]
+[ext_resource type="Texture2D" uid="uid://dc8r4orb4bh6d" path="res://art/enemySwimming_2.png" id="4_xadxh"]
+[ext_resource type="Texture2D" uid="uid://b33rf4ua50s5u" path="res://art/enemyWalking_1.png" id="5_07wc2"]
+[ext_resource type="Texture2D" uid="uid://c5f5ayjfiw6d7" path="res://art/enemyWalking_2.png" id="6_6fsbb"]
 [ext_resource type="PackedScene" uid="uid://dheuhn4kvwdb4" path="res://hud/hp_bar.tscn" id="8_2ykid"]
 [ext_resource type="PackedScene" uid="uid://cj1uchh01eyqh" path="res://logic/hp_controller.tscn" id="9_0kf8y"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_x1lww"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ludpm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -16,8 +20,30 @@ animations = [{
 "texture": ExtResource("2_cndcs")
 }],
 "loop": true,
+"name": &"fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xd5hh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xadxh")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_07wc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6fsbb")
+}],
+"loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 3.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0flk4"]
@@ -26,14 +52,15 @@ height = 72.5474
 
 [node name="Mob" type="RigidBody2D" groups=["Mob"]]
 collision_layer = 4
-collision_mask = 8
-max_contacts_reported = 2
-contact_monitor = true
+collision_mask = 10
 script = ExtResource("1_ebpeh")
+movement_speed = null
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_x1lww")
-animation = &"walk"
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_ludpm")
+animation = &"fly"
+frame_progress = 0.365339
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 4
