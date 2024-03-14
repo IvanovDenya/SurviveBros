@@ -16,6 +16,6 @@ mob_spawn_delay = 0
 script = ExtResource("1_x7y3s")
 spawns = Array[ExtResource("2_qjp20")]([SubResource("Resource_pg08h")])
 
-[node name="Timer" type="Timer" parent="."]
+[node name="MobTimer" type="Timer" parent="."]
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_timer_timeout"]
