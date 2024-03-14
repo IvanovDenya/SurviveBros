@@ -20,6 +20,7 @@ func game_over():
 	$Music.stop()
 	$Shoot_Timer.stop()
 	$DeathSound.play()
+	$MobSpawner/MobTimer.stop()
 	get_tree().call_group("mobs", "queue_free")
 	get_tree().call_group("player_projectiles", "queue_free")
 	
@@ -32,6 +33,7 @@ func _on_start_timer_timeout():
 	$ScoreTimer.start()
 	$Shoot_Timer.start()
 	$Music.play()
+	$MobSpawner/MobTimer.start()
 	if (current_game_state == GameState.Start):
 		current_game_state = GameState.Running
 		

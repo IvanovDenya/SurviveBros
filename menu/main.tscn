@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ca7lb6exwfg3y"]
+[gd_scene load_steps=8 format=3 uid="uid://ca7lb6exwfg3y"]
 
 [ext_resource type="Script" path="res://menu/Main.gd" id="1_dkmla"]
+[ext_resource type="Texture2D" uid="uid://jldf75jb7oad" path="res://art/dirt_full_new.png" id="2_qexsx"]
 [ext_resource type="PackedScene" uid="uid://cd5oocw5teo6p" path="res://units/player.tscn" id="3_pcdji"]
 [ext_resource type="PackedScene" uid="uid://bykmj3v0gofwe" path="res://menu/hud.tscn" id="4_rh2o6"]
 [ext_resource type="AudioStream" uid="uid://c6i8kaw8k8euv" path="res://art/House In a Forest Loop.ogg" id="5_6d3v7"]
@@ -10,13 +11,14 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_dkmla")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0.52549, 0.52549, 1)
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-419.5, 283)
+scale = Vector2(1.72425, 1.2805)
+texture = ExtResource("2_qexsx")
+region_enabled = true
+region_rect = Rect2(0, 0, 6000, 6000)
 
 [node name="Player" parent="." instance=ExtResource("3_pcdji")]
 position = Vector2(919, 528)
@@ -28,7 +30,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(916, 533)
+position = Vector2(938, 539)
 
 [node name="HUD" parent="." instance=ExtResource("4_rh2o6")]
 
