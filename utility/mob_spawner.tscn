@@ -9,7 +9,7 @@ script = ExtResource("2_qjp20")
 time_start = 1
 time_end = 60
 mob = ExtResource("2_nhl42")
-mob_num = 11
+mob_num = 1
 mob_spawn_delay = 2
 
 [node name="MobSpawner" type="Node2D"]

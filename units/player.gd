@@ -7,6 +7,9 @@ signal hit
 var current_velocity = Vector2.ZERO
 @export var state = "normal"
 
+func my_type():
+	return "Player"
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#screen_size = get_viewport_rect().size

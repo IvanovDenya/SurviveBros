@@ -21,38 +21,38 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0flk4"]
-radius = 31.8247
-height = 72.5474
+radius = 19.4033
+height = 38.8067
 
 [node name="Mob" type="RigidBody2D" groups=["Mob"]]
 collision_layer = 4
-collision_mask = 8
+collision_mask = 12
 max_contacts_reported = 2
 contact_monitor = true
 script = ExtResource("1_ebpeh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_x1lww")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 4
 visibility_layer = 2
-position = Vector2(10, -9.53674e-07)
+position = Vector2(6, 0)
 rotation = 0.565487
 shape = SubResource("CapsuleShape2D_0flk4")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-visible = false
-position = Vector2(12, 0)
+position = Vector2(4, 3)
 scale = Vector2(2.6, 3.6)
 
 [node name="HpBar" parent="." instance=ExtResource("8_2ykid")]
-offset_left = -49.0
-offset_top = -84.0
-offset_right = 217.0
-offset_bottom = -34.0
-scale = Vector2(0.4, 0.25)
+offset_left = -37.0
+offset_top = -48.0
+offset_right = 229.0
+offset_bottom = 2.0
+scale = Vector2(0.3, 0.2)
 
 [node name="HpController" parent="." instance=ExtResource("9_0kf8y")]
 
