@@ -73,6 +73,9 @@ player_dash={
 2d_render/layer_3="enemy"
 2d_render/layer_4="player_projectile"
 2d_render/layer_5="enemy_projectile"
+2d_physics/layer_1="enviroment"
+2d_physics/layer_2="player"
+2d_physics/layer_3="mob"
 
 [physics]
 

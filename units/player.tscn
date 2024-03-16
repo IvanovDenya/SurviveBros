@@ -25,7 +25,7 @@ height = 68.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 5
 script = ExtResource("1_h0hgi")
 metadata/_edit_group_ = true
 
