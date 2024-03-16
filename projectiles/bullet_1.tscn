@@ -7,6 +7,7 @@
 radius = 5.0
 
 [node name="Bullet_1" instance=ExtResource("1_0gq15")]
+collision_layer = 0
 mass = 0.01
 max_contacts_reported = 1
 contact_monitor = true

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbo3vv61qykfg"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5fk42"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dhpii"]
+size = Vector2(26917.8, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f86w"]
+size = Vector2(26688, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xft78"]
+size = Vector2(59, 20207)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ao6gc"]
+size = Vector2(41, 19462.5)
+
+[node name="InvisibleBorders" type="StaticBody2D"]
+disable_mode = 1
+collision_mask = 6
+physics_material_override = SubResource("PhysicsMaterial_5fk42")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -9605.5)
+shape = SubResource("RectangleShape2D_dhpii")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(24, 9604.5)
+shape = SubResource("RectangleShape2D_1f86w")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-12928.5, 14)
+shape = SubResource("RectangleShape2D_xft78")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(12919.5, 127.25)
+shape = SubResource("RectangleShape2D_ao6gc")
