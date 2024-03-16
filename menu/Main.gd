@@ -23,7 +23,7 @@ func _on_shoot_timer_timeout():
 	bullet.linear_velocity = velocity.rotated(rng_rotation)
 	add_child(bullet)
 	#lowering the attack speed 
-	$Shoot_Timer.wait_time = get_increased_time($Shoot_Timer.wait_time)
+	$Shoot_Timer.wait_time = get_increased_time($Shoot_Timer.wait_time, 1)
 
 func _on_start_timer_timeout():
 	$Player.start($StartPosition.position)
@@ -48,11 +48,11 @@ func game_over():
 
 #Increases timers time by 2% and returns it
 #Stops increasing past 0.5s
-func get_increased_time(base_time):
+func get_increased_time(base_time, increase_ratio):
 	const max_time = 0.5 #sec
 	if (base_time > max_time):
 		return max_time
-	return base_time * 1.02
+	return base_time * increase_ratio
 
 #Currently, this returns static path to bullet_1
 #Later, this will return objects based on current weapon, etc
