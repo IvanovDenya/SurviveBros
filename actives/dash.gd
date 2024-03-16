@@ -1,7 +1,6 @@
 extends Node
 
 var user = null
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -19,8 +18,8 @@ func execute(target):
 	#Timer is not active, ability can be used
 	if $AbilityTimer.time_left == 0:
 		$AbilityTimer.start()
-		user.state = "dashing"
+		user.state = GlobalInfo.Unit_state.Dash
 		$EndDashTimer.start()
 		
 func _on_end_dash_timer_timeout():
-	user.state = "normal"
+	user.state = GlobalInfo.Unit_state.Normal

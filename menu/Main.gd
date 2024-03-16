@@ -26,6 +26,7 @@ func _on_shoot_timer_timeout():
 	$Shoot_Timer.wait_time = get_increased_time($Shoot_Timer.wait_time)
 
 func _on_start_timer_timeout():
+	$Player.start($StartPosition.position)
 	$ScoreTimer.start()
 	$Shoot_Timer.start()
 	$Music.play()
@@ -69,7 +70,6 @@ func get_random_rotation_degrees():
 
 func new_game():
 	score = 0
-	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")	

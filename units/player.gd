@@ -2,9 +2,9 @@ extends CharacterBody2D
 signal hit
 
 @export var speed = 300
-@export var dash_speed = 3000
+@export var dash_speed = 30000
 var current_velocity = Vector2.ZERO
-@export var state = "normal"
+var state = GlobalInfo.Unit_state.Idle
 
 
 
@@ -16,10 +16,15 @@ func _on_body_entered(_body):
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 
 func _process(_delta):
+	
+	if (state == GlobalInfo.Unit_state.Idle):
+		pass
 	move_and_slide()
-	player_animation()
 	player_dash()
-
+	player_movement()
+	player_animation()
+	
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
@@ -46,20 +51,23 @@ func player_animation():
 	else:
 		$AnimatedSprite2D.flip_h = false
 
-func player_dash():
-	if Input.is_action_pressed("player_dash"):
-		$Dash.execute(self)
-	var speed_used = (dash_speed if state == "dashing" else speed)
+func player_movement():
+	var speed_used = (dash_speed if state == GlobalInfo.Unit_state.Dash else speed)
 
-	if state == "normal":
+	if state == GlobalInfo.Unit_state.Normal:
 		calculate_current_velocity()
 	else:
 		current_velocity = current_velocity.normalized() * speed_used
 	
 	velocity = current_velocity
 
+func player_dash():
+	if Input.is_action_pressed("player_dash"):
+		$Dash.execute(self)
+
 func start(pos):
 	position = pos
+	state = GlobalInfo.Unit_state.Normal
 	show()
 	$CollisionShape2D.disabled = false
 

@@ -4,6 +4,12 @@ enum HP_modifier_type {
 	CurrentHPPercentage,
 	MaxHPPercantage
 }
+enum Unit_state {
+	Idle,
+	Normal,
+	Dead,
+	Dash
+}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
