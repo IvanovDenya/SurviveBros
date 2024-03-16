@@ -6,38 +6,11 @@ var bulletObj = null
 var score
 var current_game_state = GameState.Start
 
-func new_game():
-	score = 0
-	$Player.start($StartPosition.position)
-	$StartTimer.start()
-	$HUD.update_score(score)
-	$HUD.show_message("Get Ready")	
-	
 
-func game_over():
-	$ScoreTimer.stop()
-	$HUD.show_game_over()
-	$Music.stop()
-	$Shoot_Timer.stop()
-	$DeathSound.play()
-	$MobSpawner/MobTimer.stop()
-	get_tree().call_group("mobs", "queue_free")
-	get_tree().call_group("player_projectiles", "queue_free")
-	
+
 func _on_score_timer_timeout():
 	score += 1
 	$HUD.update_score(score)
-
-
-func _on_start_timer_timeout():
-	$ScoreTimer.start()
-	$Shoot_Timer.start()
-	$Music.play()
-	$MobSpawner/MobTimer.start()
-	if (current_game_state == GameState.Start):
-		current_game_state = GameState.Running		
-
-
 
 func _on_shoot_timer_timeout():
 	#add a bullet in random direction with random speed
@@ -52,6 +25,25 @@ func _on_shoot_timer_timeout():
 	#lowering the attack speed 
 	$Shoot_Timer.wait_time = get_increased_time($Shoot_Timer.wait_time)
 
+func _on_start_timer_timeout():
+	$ScoreTimer.start()
+	$Shoot_Timer.start()
+	$Music.play()
+	$MobSpawner/MobTimer.start()
+	if (current_game_state == GameState.Start):
+		current_game_state = GameState.Running		
+
+
+
+func game_over():
+	$ScoreTimer.stop()
+	$HUD.show_game_over()
+	$Music.stop()
+	$Shoot_Timer.stop()
+	$DeathSound.play()
+	$MobSpawner/MobTimer.stop()
+	get_tree().call_group("mobs", "queue_free")
+	get_tree().call_group("player_projectiles", "queue_free")
 
 #Increases timers time by 2% and returns it
 #Stops increasing past 0.5s
@@ -70,9 +62,23 @@ func get_path_to_current_projectile():
 #Returns - float - random angle in radians from 0 to 2 * PI
 func get_random_rotation_radians():
 	return deg_to_rad(get_random_rotation_degrees())
-	
+
 #Returns - float - random angle in degrees from 0 to 360
 func get_random_rotation_degrees():
 	return randf() * 360
+
+func new_game():
+	score = 0
+	$Player.start($StartPosition.position)
+	$StartTimer.start()
+	$HUD.update_score(score)
+	$HUD.show_message("Get Ready")	
+
+
+
+
+
+
+
 
 

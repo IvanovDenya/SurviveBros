@@ -6,24 +6,8 @@ extends Node2D
 
 @export var accumulated_time = 0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
-func _on_timer_timeout():
-	accumulated_time += 1
-	for mob_spawn_info in mob_spawn_records:
-		#increase counter until it reaches the delay
-		handle_spawn_delay_counter(mob_spawn_info)
-		#check if a mob can be spawned
-		if can_mob_be_spawned(mob_spawn_info):
-			spawn_mob(mob_spawn_info)
-		
 func can_mob_be_spawned(mob_spawn_info):
 	#Cant be spawned because not time to start yet
 	if GlobalF.is_strictly_outside(accumulated_time, mob_spawn_info.time_start, mob_spawn_info.time_end):
@@ -33,18 +17,6 @@ func can_mob_be_spawned(mob_spawn_info):
 		return false
 	return true
 
-func handle_spawn_delay_counter(mob_spawn_info):
-	if mob_spawn_info.spawn_delay_counter < mob_spawn_info.mob_spawn_delay:
-		mob_spawn_info.spawn_delay_counter += 1	
-		
-func spawn_mob(mob_spawn_info):
-	mob_spawn_info.spawn_delay_counter = 0
-	var new_mob = mob_spawn_info.mob	
-	for i in mob_spawn_info.mob_num:
-		var mob = new_mob.instantiate()
-		mob.global_position = get_random_position()
-		add_child(mob)
-		
 func get_random_position():
 	var vpr = get_viewport_rect().size * randf_range(1.1,1.4)
 	var top_left = Vector2(player.global_position.x - vpr.x/2, player.global_position.y - vpr.y/2)
@@ -72,3 +44,33 @@ func get_random_position():
 	var x_spawn = randf_range(spawn_pos1.x, spawn_pos2.x)
 	var y_spawn = randf_range(spawn_pos1.y,spawn_pos2.y)
 	return Vector2(x_spawn,y_spawn)
+
+func handle_spawn_delay_counter(mob_spawn_info):
+	if mob_spawn_info.spawn_delay_counter < mob_spawn_info.mob_spawn_delay:
+		mob_spawn_info.spawn_delay_counter += 1	
+
+func _on_timer_timeout():
+	accumulated_time += 1
+	for mob_spawn_info in mob_spawn_records:
+		#increase counter until it reaches the delay
+		handle_spawn_delay_counter(mob_spawn_info)
+		#check if a mob can be spawned
+		if can_mob_be_spawned(mob_spawn_info):
+			spawn_mob(mob_spawn_info)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	pass
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+func spawn_mob(mob_spawn_info):
+	mob_spawn_info.spawn_delay_counter = 0
+	var new_mob = mob_spawn_info.mob	
+	for i in mob_spawn_info.mob_num:
+		var mob = new_mob.instantiate()
+		mob.global_position = get_random_position()
+		add_child(mob)
+
