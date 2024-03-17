@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SurviveBros"
-run/main_scene="res://menu/main.tscn"
+run/main_scene="res://menu/menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
