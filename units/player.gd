@@ -9,19 +9,18 @@ var state = GlobalInfo.Unit_state.Idle
 
 
 
-#Не нашел такой сигнал в базе CharacterBody, возможно вообще не нужен
-func _on_body_entered(_body):
-	hide()
-	hit.emit()
-	$CollisionShape2D.set_deferred("disabled", true)
-	$DetectionArea/CollisionShape2D.set_deferred("disabled", true)
+func _on_body_entered(body):
+	if body.is_in_group("mobs"):
+		die()
 
 
 func _physics_process(_delta):
 	
 	if (state == GlobalInfo.Unit_state.Idle):
 		pass
-	
+	if (state == GlobalInfo.Unit_state.Dead):
+		pass
+		
 	player_dash()
 	player_movement()
 	player_animation()
@@ -31,6 +30,14 @@ func _physics_process(_delta):
 func _ready():
 	hide()
 
+#handles player death
+func die():
+	hide()
+	hit.emit()
+	$CollisionShape2D.set_deferred("disabled", true)
+	$DetectionArea/CollisionShape2D.set_deferred("disabled", true)
+	state = GlobalInfo.Unit_state.Dead
+	
 #ETODO Annotation
 func calculate_current_velocity():
 	if state == GlobalInfo.Unit_state.Normal:
@@ -44,8 +51,7 @@ func calculate_current_velocity():
 	else:
 		current_velocity = Vector2.ZERO
 	print(current_velocity)
-func my_type():
-	return "Player"
+
 
 func player_animation():
 	if current_velocity.length() > 0:

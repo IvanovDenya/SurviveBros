@@ -2,7 +2,7 @@ extends Node2D
 
 @export var mob_spawn_records: Array[Mob_spawn_info] = []
 
-@onready var player = get_tree().get_first_node_in_group("Player")
+@onready var player = get_tree().get_first_node_in_group("player")
 
 @export var accumulated_time = 0
 

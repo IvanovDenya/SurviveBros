@@ -3,8 +3,7 @@ extends RigidBody2D
 @export var max_hp = 1000
 @export var movement_speed = 100
 
-@onready var player = get_tree().get_first_node_in_group("Player")
-
+@onready var player = get_tree().get_first_node_in_group("player")
 
 
 func _on_body_entered(body):
