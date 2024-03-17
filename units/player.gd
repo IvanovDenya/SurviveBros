@@ -13,7 +13,7 @@ func _on_body_entered(_body):
 	hide()
 	hit.emit()
 	$CollisionShape2D.set_deferred("disabled", true)
-	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+	$DetectionArea/CollisionShape2D.set_deferred("disabled", true)
 
 func _process(_delta):
 	

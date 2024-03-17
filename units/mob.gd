@@ -8,7 +8,7 @@ extends RigidBody2D
 
 
 func _on_body_entered(body):
-	if body.my_type() != "Mob" and body.my_type() != "Player":
+	if body.is_in_group("player_projectiles"):
 		$HpController.modify_hp(body.damage, GlobalInfo.HP_modifier_type.Flat)
 
 #Mob dead
@@ -43,6 +43,5 @@ func mob_animation():
 	else:
 		$AnimatedSprite2D.flip_h = false
 
-func my_type():
-	return "Mob"
+
 
