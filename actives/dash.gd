@@ -14,9 +14,9 @@ func _process(_delta):
 #Paremeters:
 #	user: user of the ability
 func execute(target):
-	self.user = target
 	#Timer is not active, ability can be used
 	if $AbilityTimer.time_left == 0:
+		user = target
 		$AbilityTimer.start()
 		user.state = GlobalInfo.Unit_state.Dash
 		$EndDashTimer.start()

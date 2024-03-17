@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://cd5oocw5teo6p"]
+
+[ext_resource type="Script" path="res://units/player.gd" id="1_h0hgi"]
+[ext_resource type="Texture2D" uid="uid://btm3un2pkac2b" path="res://art/playerGrey_walk1.png" id="4_yp7ug"]
+[ext_resource type="Texture2D" uid="uid://ddki7xfoh6l2c" path="res://art/playerGrey_walk2.png" id="5_n6o88"]
+[ext_resource type="PackedScene" uid="uid://bvpfma7nwo0kr" path="res://actives/dash.tscn" id="6_0tsuv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iqtam"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_yp7ug")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n6o88")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nm205"]
+radius = 27.0
+height = 68.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 0
+script = ExtResource("1_h0hgi")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_iqtam")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_nm205")
+
+[node name="Dash" parent="." instance=ExtResource("6_0tsuv")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -12900
+limit_top = -9600
+limit_right = 12900
+limit_bottom = 9600
+limit_smoothed = true
+editor_draw_limits = true
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CapsuleShape2D_nm205")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_body_entered"]
