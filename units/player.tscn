@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cd5oocw5teo6p"]
+[gd_scene load_steps=8 format=3 uid="uid://cd5oocw5teo6p"]
 
 [ext_resource type="Script" path="res://units/player.gd" id="1_h0hgi"]
 [ext_resource type="Texture2D" uid="uid://btm3un2pkac2b" path="res://art/playerGrey_walk1.png" id="4_yp7ug"]
 [ext_resource type="Texture2D" uid="uid://ddki7xfoh6l2c" path="res://art/playerGrey_walk2.png" id="5_n6o88"]
+[ext_resource type="PackedScene" uid="uid://bm67pxhxxjfs" path="res://logic/xp_controller.tscn" id="5_q6uj5"]
 [ext_resource type="PackedScene" uid="uid://bvpfma7nwo0kr" path="res://actives/dash.tscn" id="6_0tsuv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iqtam"]
@@ -25,6 +26,7 @@ height = 68.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player", "player"]]
 collision_layer = 0
+collision_mask = 33
 script = ExtResource("1_h0hgi")
 metadata/_edit_group_ = true
 
@@ -48,9 +50,13 @@ editor_draw_limits = true
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 20
+collision_mask = 52
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CapsuleShape2D_nm205")
 
+[node name="XpController" parent="." instance=ExtResource("5_q6uj5")]
+
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_body_entered"]
+[connection signal="lvl_up" from="XpController" to="." method="_on_xp_controller_lvl_up"]

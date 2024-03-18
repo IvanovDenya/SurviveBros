@@ -2,6 +2,8 @@ extends RigidBody2D
 
 @export var max_hp = 1000
 @export var movement_speed = 100
+@export var xp_dropped = 3
+
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
@@ -12,6 +14,10 @@ func _on_body_entered(body):
 
 #Mob dead
 func _on_hp_controller_hp_zero():
+	var to_spawn = $XpSpawner.get_spawning_xp_objects(50, position, 50)
+	for spawning_object in to_spawn:
+		var main_scene = get_tree().get_first_node_in_group("main")
+		main_scene.call_deferred("add_child", spawning_object)
 	queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

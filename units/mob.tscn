@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dq5ftmmtapqpg"]
+[gd_scene load_steps=9 format=3 uid="uid://dq5ftmmtapqpg"]
 
 [ext_resource type="Texture2D" uid="uid://chg6fuv5n6j8b" path="res://art/enemyFlyingAlt_1.png" id="1_3nh7u"]
 [ext_resource type="Script" path="res://units/mob.gd" id="1_ebpeh"]
 [ext_resource type="Texture2D" uid="uid://dn1k20w8iy55u" path="res://art/enemyFlyingAlt_2.png" id="2_cndcs"]
+[ext_resource type="PackedScene" uid="uid://b66tg6w44nvuc" path="res://logic/XP_Spawner.tscn" id="6_oswkd"]
 [ext_resource type="PackedScene" uid="uid://dheuhn4kvwdb4" path="res://hud/hp_bar.tscn" id="8_2ykid"]
 [ext_resource type="PackedScene" uid="uid://cj1uchh01eyqh" path="res://logic/hp_controller.tscn" id="9_0kf8y"]
 
@@ -55,6 +56,8 @@ offset_bottom = 2.0
 scale = Vector2(0.3, 0.2)
 
 [node name="HpController" parent="." instance=ExtResource("9_0kf8y")]
+
+[node name="XpSpawner" parent="." instance=ExtResource("6_oswkd")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="hp_zero" from="HpController" to="." method="_on_hp_controller_hp_zero"]

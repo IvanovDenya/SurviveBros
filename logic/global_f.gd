@@ -68,6 +68,16 @@ func is_strictly_outside(value, low_end, high_end):
 func is_non_strictly_outside(value, low_end, high_end):
 	return not is_strictly_between(value,low_end,high_end)
 	
+	
+#Returns a position in dispercity range (pixels) from position
+func randomize_position(position, dispercity):
+	var randomAngle = randf() * 2 * PI
+	var randomDistance = randf() * dispercity
+	#we look for a position located at randomDistance pixels from position, at randomAngle degrees from it
+	var x_shift = sin(randomAngle) * randomDistance
+	var y_shift = cos(randomAngle) * randomDistance
+	return Vector2(position.x + x_shift, position.y + y_shift)
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

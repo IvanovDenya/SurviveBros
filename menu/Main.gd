@@ -23,7 +23,7 @@ func _on_shoot_timer_timeout():
 	bullet.linear_velocity = velocity.rotated(rng_rotation)
 	add_child(bullet)
 	#lowering the attack speed 
-	$Shoot_Timer.wait_time = get_increased_time($Shoot_Timer.wait_time, 1)
+	$Shoot_Timer.wait_time = 1.0/$Player.current_attack_speed
 
 func _on_start_timer_timeout():
 	$Player.start($StartPosition.position)
@@ -77,6 +77,7 @@ func new_game():
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")	
+	$Shoot_Timer.wait_time = 1.0/$Player.base_attack_speed
 
 
 

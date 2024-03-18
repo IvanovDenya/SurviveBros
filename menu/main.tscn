@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cbo3vv61qykfg" path="res://enviroment/invisible_borders.tscn" id="8_33pqm"]
 [ext_resource type="PackedScene" uid="uid://bpa2be6q0wcwa" path="res://menu/menu.tscn" id="9_7aevu"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" groups=["main"]]
 script = ExtResource("1_dkmla")
 
 [node name="Background" type="Sprite2D" parent="."]

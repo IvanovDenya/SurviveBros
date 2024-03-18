@@ -24,6 +24,8 @@ GlobalF="*res://logic/global_f.tscn"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
+window/size/borderless=true
 window/stretch/mode="canvas_items"
 
 [input]
@@ -73,9 +75,13 @@ player_dash={
 2d_render/layer_3="enemy"
 2d_render/layer_4="player_projectile"
 2d_render/layer_5="enemy_projectile"
+2d_render/layer_6="player_interactable"
 2d_physics/layer_1="enviroment"
 2d_physics/layer_2="player"
 2d_physics/layer_3="mob"
+2d_physics/layer_4="player_projectile"
+2d_physics/layer_5="enemy_projectile"
+2d_physics/layer_6="player_interactable"
 
 [physics]
 

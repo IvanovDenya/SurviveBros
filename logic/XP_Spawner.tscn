@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b66tg6w44nvuc"]
+
+[ext_resource type="Script" path="res://logic/XP_Spawner.gd" id="1_yqo8r"]
+[ext_resource type="PackedScene" uid="uid://e6tg5urqrrgy" path="res://enviroment/XP_Barrel_small.tscn" id="2_5exoh"]
+
+[node name="XpSpawner" type="Node"]
+script = ExtResource("1_yqo8r")
+XP_objects = Array[Resource]([ExtResource("2_5exoh")])

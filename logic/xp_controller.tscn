@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm67pxhxxjfs"]
+
+[ext_resource type="Script" path="res://logic/xp_controller.gd" id="1_bhnww"]
+
+[node name="XpController" type="Node"]
+script = ExtResource("1_bhnww")
