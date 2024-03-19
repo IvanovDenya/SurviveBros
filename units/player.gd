@@ -11,6 +11,8 @@ var current_attack_speed = base_attack_speed
 var hitboxes_hidden = false
 var move_speed_modifier = 1
 var current_lvl = 0
+@onready var ram_shoot = $RambroShoot
+@onready var ram_run = $RambroRun
 
 func _on_body_entered(body):
 	if body.is_in_group("mobs"):
@@ -72,14 +74,18 @@ func calculate_current_velocity():
 
 func player_animation():
 	if current_velocity.length() > 0:
-		$AnimatedSprite2D.play()
+		ram_run.play()
+		ram_shoot.play()
 	else:
-		$AnimatedSprite2D.stop()
+		ram_run.stop()
+		ram_shoot.stop()
 		
 	if velocity.x < 0:
-		$AnimatedSprite2D.flip_h = true
+		ram_run.flip_h = true
+		ram_shoot.flip_h = true
 	else:
-		$AnimatedSprite2D.flip_h = false
+		ram_run.flip_h = false
+		ram_shoot.flip_h = false
 
 func player_movement():
 	current_speed = (dash_speed if state == GlobalInfo.Unit_state.Dash else speed)

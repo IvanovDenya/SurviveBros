@@ -1,23 +1,81 @@
-[gd_scene load_steps=8 format=3 uid="uid://cd5oocw5teo6p"]
+[gd_scene load_steps=17 format=3 uid="uid://cd5oocw5teo6p"]
 
 [ext_resource type="Script" path="res://units/player.gd" id="1_h0hgi"]
-[ext_resource type="Texture2D" uid="uid://btm3un2pkac2b" path="res://art/playerGrey_walk1.png" id="4_yp7ug"]
-[ext_resource type="Texture2D" uid="uid://ddki7xfoh6l2c" path="res://art/playerGrey_walk2.png" id="5_n6o88"]
+[ext_resource type="Texture2D" uid="uid://cmdr4ssctny87" path="res://assets/textures/bros/RAMBO_anim.png" id="2_100mh"]
+[ext_resource type="Texture2D" uid="uid://b0pk48xwnvp88" path="res://assets/textures/bros/RAMBRO_gun_anim.png" id="3_7qxt4"]
 [ext_resource type="PackedScene" uid="uid://bm67pxhxxjfs" path="res://logic/xp_controller.tscn" id="5_q6uj5"]
 [ext_resource type="PackedScene" uid="uid://bvpfma7nwo0kr" path="res://actives/dash.tscn" id="6_0tsuv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnk6r"]
+atlas = ExtResource("2_100mh")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt03q"]
+atlas = ExtResource("2_100mh")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sndy7"]
+atlas = ExtResource("2_100mh")
+region = Rect2(64, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwhvg"]
+atlas = ExtResource("2_100mh")
+region = Rect2(96, 0, 32, 36)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_iqtam"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_yp7ug")
+"texture": SubResource("AtlasTexture_pnk6r")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_n6o88")
+"texture": SubResource("AtlasTexture_bt03q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sndy7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwhvg")
 }],
 "loop": true,
-"name": &"walk",
-"speed": 5.0
+"name": &"run",
+"speed": 15.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eeb6d"]
+atlas = ExtResource("3_7qxt4")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgtm7"]
+atlas = ExtResource("3_7qxt4")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwsfb"]
+atlas = ExtResource("3_7qxt4")
+region = Rect2(64, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8hl1"]
+atlas = ExtResource("3_7qxt4")
+region = Rect2(96, 16, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mdi52"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eeb6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgtm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwsfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8hl1")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 15.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nm205"]
@@ -30,10 +88,18 @@ collision_mask = 33
 script = ExtResource("1_h0hgi")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+[node name="RambroRun" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_iqtam")
-animation = &"walk"
+animation = &"run"
+
+[node name="RambroShoot" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+position = Vector2(0, 14)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_mdi52")
+animation = &"shoot"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_nm205")
