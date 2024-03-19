@@ -69,8 +69,14 @@ func _ready():
 func spawn_mob(mob_spawn_info):
 	mob_spawn_info.spawn_delay_counter = 0
 	var new_mob = mob_spawn_info.mob	
-	for i in mob_spawn_info.mob_num:
+	var base_num = mob_spawn_info.mob_num
+	var final_num = base_num + floor(base_num *  GlobalInfo.mob_spawn_rate_increase_per_second_percents * accumulated_time / 100.0)
+	final_num = min(GlobalInfo.max_spawn_rate_percents / 100.0 * base_num, final_num)
+	
+	print("Mobs spawning : " + str(final_num))
+	for i in final_num:
 		var mob = new_mob.instantiate()
 		mob.global_position = get_random_position()
+		mob.speed_modifier *= (1 + GlobalInfo.mob_movespeed_increase_per_second_percents * accumulated_time / 100.0)
 		add_child(mob)
 

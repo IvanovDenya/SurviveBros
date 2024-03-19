@@ -3,7 +3,7 @@ extends RigidBody2D
 @export var max_hp = 1000
 @export var movement_speed = 100
 @export var xp_dropped = 3
-
+var speed_modifier = 1
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
@@ -14,7 +14,7 @@ func _on_body_entered(body):
 
 #Mob dead
 func _on_hp_controller_hp_zero():
-	var to_spawn = $XpSpawner.get_spawning_xp_objects(50, position, 50)
+	var to_spawn = $XpSpawner.get_spawning_xp_objects(xp_dropped, position, 50)
 	for spawning_object in to_spawn:
 		var main_scene = get_tree().get_first_node_in_group("main")
 		main_scene.call_deferred("add_child", spawning_object)
@@ -26,7 +26,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	var direction = global_position.direction_to(player.global_position)
-	linear_velocity = direction * movement_speed
+	linear_velocity = direction * movement_speed * speed_modifier
 	mob_animation()
 
 # Called when the node enters the scene tree for the first time.

@@ -4,6 +4,7 @@ enum GameState {Start, Running, GameOver }
 var bulletObj = null
 var score
 var current_game_state = GameState.Start
+var shoot_loop_count = 1
 
 func _ready():
 	new_game()
@@ -14,16 +15,22 @@ func _on_score_timer_timeout():
 
 func _on_shoot_timer_timeout():
 	#add a bullet in random direction with random speed
-	bulletObj = load(get_path_to_current_projectile())
-	var bullet = bulletObj.instantiate()
-	bullet.position = $Player.get_global_position()
-	var rng_rotation = get_random_rotation_radians()
-	bullet.rotation = rng_rotation
-	var velocity = Vector2(bullet.travel_speed, 0.0)
-	bullet.linear_velocity = velocity.rotated(rng_rotation)
-	add_child(bullet)
-	#lowering the attack speed 
-	$Shoot_Timer.wait_time = 1.0/$Player.current_attack_speed
+	for i in shoot_loop_count:
+		bulletObj = load(get_path_to_current_projectile())
+		var bullet = bulletObj.instantiate()
+		bullet.position = $Player.get_global_position()
+		var rng_rotation = get_random_rotation_radians()
+		bullet.rotation = rng_rotation
+		var velocity = Vector2(bullet.travel_speed, 0.0)
+		bullet.linear_velocity = velocity.rotated(rng_rotation)
+		add_child(bullet)
+
+	
+	var estimated_wait_time =  1.0/$Player.current_attack_speed
+	if estimated_wait_time < 0.1:
+		$Shoot_Timer.wait_time = 0.1
+		shoot_loop_count = int(0.1 / estimated_wait_time)
+	
 
 func _on_start_timer_timeout():
 	$Player.start($StartPosition.position)
