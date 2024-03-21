@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgvnosfedniut"]
+
+[ext_resource type="PackedScene" uid="uid://dycwy0aaxsvjm" path="res://autoattacks/a_autoattack.tscn" id="1_5fknx"]
+[ext_resource type="Script" path="res://autoattacks/random_anti_mob_bullet_attack.gd" id="2_t06xo"]
+[ext_resource type="PackedScene" uid="uid://x0vxm6ypp50w" path="res://projectiles/bullet_1.tscn" id="3_iejcr"]
+
+[node name="RandomAntiMobBulletAttack" groups=["autoattacks"] instance=ExtResource("1_5fknx")]
+script = ExtResource("2_t06xo")
+bulletObj = ExtResource("3_iejcr")

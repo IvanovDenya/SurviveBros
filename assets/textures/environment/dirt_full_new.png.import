@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hv2qjgb7ciku"
-path="res://.godot/imported/hp_bar_2.png-ab871b82bb69cd88e932f1c20a22a2d4.ctex"
+uid="uid://jldf75jb7oad"
+path="res://.godot/imported/dirt_full_new.png-44233fce90a0bcb345e351e2e1922faf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/hp_bar_2.png"
-dest_files=["res://.godot/imported/hp_bar_2.png-ab871b82bb69cd88e932f1c20a22a2d4.ctex"]
+source_file="res://assets/textures/environment/dirt_full_new.png"
+dest_files=["res://.godot/imported/dirt_full_new.png-44233fce90a0bcb345e351e2e1922faf.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br1ha63mkmidw"
-path="res://.godot/imported/bulet_1.png-d8f5118549421b35930f4a57a6adb4f0.ctex"
+uid="uid://c26hhy31c0sb5"
+path="res://.godot/imported/hp_bar_1.png-5d18648e0033d01f6da5c98d0cbe1886.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/bulet_1.png"
-dest_files=["res://.godot/imported/bulet_1.png-d8f5118549421b35930f4a57a6adb4f0.ctex"]
+source_file="res://assets/textures/interface/hp_bar_1.png"
+dest_files=["res://.godot/imported/hp_bar_1.png-5d18648e0033d01f6da5c98d0cbe1886.ctex"]
 
 [params]
 

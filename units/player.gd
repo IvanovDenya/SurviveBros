@@ -1,22 +1,29 @@
 extends CharacterBody2D
 signal hit
+signal spawn_something(to_spawn)
+
+@onready var ram_shoot = $RambroShoot
+@onready var ram_run = $RambroRun
+
 
 @export var speed = 300
 @export var dash_speed = 3000
+@export var base_attack_speed = 5
+
+
 var current_velocity = Vector2.ZERO
 var current_speed = 0
 var state = GlobalInfo.Unit_state.Idle
-@export var base_attack_speed = 5
 var current_attack_speed = base_attack_speed
 var hitboxes_hidden = false
 var move_speed_modifier = 1
 var current_lvl = 0
-@onready var ram_shoot = $RambroShoot
-@onready var ram_run = $RambroRun
+var autoattacks = []
 
 func _on_body_entered(body):
 	if body.is_in_group("mobs"):
 		die()
+
 func _on_detection_area_area_entered(area):
 	if area.is_in_group("xp_objects"):
 		$XpController.add_xp(area.xp_value)
@@ -51,13 +58,49 @@ func _physics_process(_delta):
 func _ready():
 	hide()
 
+func _on_autoattack_ready(autoattack):
+	var to_spawn = autoattack.objects_to_spawn()
+	spawn_something.emit(to_spawn)
+	
+
 #handles player death
 func die():
 	hide()
 	hit.emit()
 	set_hitboxes(false)
 	state = GlobalInfo.Unit_state.Dead
+
+func autofill_autoattacks():	
+	for autoattack in autoattacks:
+		autoattack.queue_free()
+	autoattacks.clear()
 	
+	var randombullet = load("res://autoattacks/random_anti_mob_bullet_attack.tscn")
+	var randombullet_obj = randombullet.instantiate()
+	randombullet_obj.user = self
+	randombullet_obj.ready_attack.connect(_on_autoattack_ready)
+	randombullet_obj.set_cooldown(randombullet_obj.get_default_cooldown()/current_attack_speed)
+	autoattacks.append(randombullet_obj)
+	add_child(randombullet_obj)
+	
+	var randombullet2 = load("res://autoattacks/mob_targeted_bullet.tscn")
+	var randombullet_obj2 = randombullet2.instantiate()
+	randombullet_obj2.user = self
+	randombullet_obj2.ready_attack.connect(_on_autoattack_ready)
+	randombullet_obj2.set_cooldown(randombullet_obj2.get_default_cooldown()/current_attack_speed)
+	autoattacks.append(randombullet_obj2)
+	add_child(randombullet_obj2)
+		
+
+func add_autoattack(autoattack_path):
+	var autoattack = load(autoattack_path)
+	var autoattack_obj = autoattack.instantiate()
+	autoattack_obj.user = self
+	autoattack_obj.ready_attack.connect(_on_autoattack_ready)
+	autoattack_obj.set_cooldown(autoattack_obj.get_default_cooldown()/current_attack_speed)
+	autoattacks.append(autoattack_obj)
+	add_child(autoattack_obj)
+
 #ETODO Annotation
 func calculate_current_velocity():
 	if state == GlobalInfo.Unit_state.Normal:
@@ -71,6 +114,13 @@ func calculate_current_velocity():
 	else:
 		current_velocity = Vector2.ZERO
 
+func disable_autoattacks():
+	for autoattack in autoattacks:
+		autoattack.disable_attack()
+		
+func enable_autoattacks():
+	for autoattack in autoattacks:
+		autoattack.enable_attack()
 
 func player_animation():
 	if current_velocity.length() > 0:
@@ -83,7 +133,7 @@ func player_animation():
 	if velocity.x < 0:
 		ram_run.flip_h = true
 		ram_shoot.flip_h = true
-	else:
+	elif velocity.x > 0:
 		ram_run.flip_h = false
 		ram_shoot.flip_h = false
 
@@ -105,8 +155,3 @@ func start(pos):
 func set_hitboxes(value):
 	$CollisionShape2D.set_deferred("disabled", not value)
 	$DetectionArea/CollisionShape2D.set_deferred("disabled", not value)
-
-
-
-
-

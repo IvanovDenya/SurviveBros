@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dheuhn4kvwdb4"]
 
-[ext_resource type="Texture2D" uid="uid://hv2qjgb7ciku" path="res://art/hp_bar_2.png" id="1_j2hfo"]
-[ext_resource type="Texture2D" uid="uid://c26hhy31c0sb5" path="res://art/hp_bar_1.png" id="2_jyqpk"]
+[ext_resource type="Texture2D" uid="uid://hv2qjgb7ciku" path="res://assets/textures/interface/hp_bar_2.png" id="1_j2hfo"]
+[ext_resource type="Texture2D" uid="uid://c26hhy31c0sb5" path="res://assets/textures/interface/hp_bar_1.png" id="2_jyqpk"]
 
 [node name="HP_Bar" type="TextureProgressBar"]
 offset_left = -133.0

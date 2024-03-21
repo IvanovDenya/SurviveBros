@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dycwy0aaxsvjm"]
+
+[ext_resource type="Script" path="res://autoattacks/a_autoattack.gd" id="1_08l4f"]
+
+[node name="AAutoattack" type="Node"]
+script = ExtResource("1_08l4f")
+
+[node name="Cooldown" type="Timer" parent="." groups=["autoattacks"]]
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

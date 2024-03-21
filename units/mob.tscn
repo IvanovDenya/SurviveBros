@@ -29,6 +29,7 @@ height = 38.8067
 z_index = 90
 collision_layer = 4
 collision_mask = 13
+mass = 50.0
 max_contacts_reported = 2
 contact_monitor = true
 script = ExtResource("1_ebpeh")

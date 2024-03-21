@@ -78,6 +78,15 @@ func randomize_position(position, dispercity):
 	var y_shift = cos(randomAngle) * randomDistance
 	return Vector2(position.x + x_shift, position.y + y_shift)
 	
+	
+#Returns - float - random angle in radians from 0 to 2 * PI
+func get_random_rotation_radians():
+	return deg_to_rad(get_random_rotation_degrees())
+
+#Returns - float - random angle in degrees from 0 to 360
+func get_random_rotation_degrees():
+	return randf() * 360
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
