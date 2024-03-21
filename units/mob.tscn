@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dq5ftmmtapqpg"]
+[gd_scene load_steps=15 format=3 uid="uid://dq5ftmmtapqpg"]
 
 [ext_resource type="Script" path="res://units/mob.gd" id="1_ebpeh"]
 [ext_resource type="Texture2D" uid="uid://cy3bokprm818d" path="res://assets/textures/enemies/mookDog_anim.png" id="2_cb56y"]
@@ -70,10 +70,6 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0flk4"]
-radius = 21.6278
-height = 57.6742
-
 [node name="Mob" type="RigidBody2D" groups=["Mobs", "mobs"]]
 z_index = 50
 collision_layer = 4
@@ -90,17 +86,6 @@ sprite_frames = SubResource("SpriteFrames_x1lww")
 animation = &"walk"
 frame_progress = 0.955569
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 4
-visibility_layer = 2
-position = Vector2(7, 6)
-rotation = 0.565487
-shape = SubResource("CapsuleShape2D_0flk4")
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(7, 3)
-scale = Vector2(2.6, 3.6)
-
 [node name="HpBar" parent="." instance=ExtResource("8_2ykid")]
 offset_left = -37.0
 offset_top = -48.0
@@ -111,6 +96,9 @@ scale = Vector2(0.3, 0.2)
 [node name="HpController" parent="." instance=ExtResource("9_0kf8y")]
 
 [node name="XpSpawner" parent="." instance=ExtResource("6_oswkd")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-13, 18, 25, 18, 25, -20, 10, -20, -14, 4)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="hp_zero" from="HpController" to="." method="_on_hp_controller_hp_zero"]
