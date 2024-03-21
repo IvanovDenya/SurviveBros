@@ -1,29 +1,78 @@
-[gd_scene load_steps=9 format=3 uid="uid://dq5ftmmtapqpg"]
+[gd_scene load_steps=16 format=3 uid="uid://dq5ftmmtapqpg"]
 
-[ext_resource type="Texture2D" uid="uid://chg6fuv5n6j8b" path="res://art/enemyFlyingAlt_1.png" id="1_3nh7u"]
 [ext_resource type="Script" path="res://units/mob.gd" id="1_ebpeh"]
-[ext_resource type="Texture2D" uid="uid://dn1k20w8iy55u" path="res://art/enemyFlyingAlt_2.png" id="2_cndcs"]
+[ext_resource type="Texture2D" uid="uid://cy3bokprm818d" path="res://assets/textures/enemies/mookDog_anim.png" id="2_cb56y"]
 [ext_resource type="PackedScene" uid="uid://b66tg6w44nvuc" path="res://logic/XP_Spawner.tscn" id="6_oswkd"]
 [ext_resource type="PackedScene" uid="uid://dheuhn4kvwdb4" path="res://hud/hp_bar.tscn" id="8_2ykid"]
 [ext_resource type="PackedScene" uid="uid://cj1uchh01eyqh" path="res://logic/hp_controller.tscn" id="9_0kf8y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85ara"]
+atlas = ExtResource("2_cb56y")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg6lf"]
+atlas = ExtResource("2_cb56y")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_antfo"]
+atlas = ExtResource("2_cb56y")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgjv2"]
+atlas = ExtResource("2_cb56y")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xjdx"]
+atlas = ExtResource("2_cb56y")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm67x"]
+atlas = ExtResource("2_cb56y")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af4tm"]
+atlas = ExtResource("2_cb56y")
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkaah"]
+atlas = ExtResource("2_cb56y")
+region = Rect2(224, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x1lww"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_3nh7u")
+"texture": SubResource("AtlasTexture_85ara")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_cndcs")
+"texture": SubResource("AtlasTexture_wg6lf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_antfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgjv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xjdx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm67x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af4tm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkaah")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0flk4"]
-radius = 19.4033
-height = 38.8067
+radius = 21.6278
+height = 57.6742
 
 [node name="Mob" type="RigidBody2D" groups=["Mobs", "mobs"]]
 z_index = 50
@@ -35,19 +84,21 @@ contact_monitor = true
 script = ExtResource("1_ebpeh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+position = Vector2(5, -10)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_x1lww")
 animation = &"walk"
+frame_progress = 0.955569
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 4
 visibility_layer = 2
-position = Vector2(6, 0)
+position = Vector2(7, 6)
 rotation = 0.565487
 shape = SubResource("CapsuleShape2D_0flk4")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(4, 3)
+position = Vector2(7, 3)
 scale = Vector2(2.6, 3.6)
 
 [node name="HpBar" parent="." instance=ExtResource("8_2ykid")]
