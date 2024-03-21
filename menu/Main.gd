@@ -22,7 +22,6 @@ func _on_start_timer_timeout():
 	$Player.enable_autoattacks()
 	$Player.start($StartPosition.position)
 	$ScoreTimer.start()
-	$Shoot_Timer.start()
 	$Music.play()
 	$MobSpawner/MobTimer.start()
 	if (current_game_state == GameState.Start):
@@ -35,7 +34,6 @@ func game_over():
 	$ScoreTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
-	$Shoot_Timer.stop()
 	$DeathSound.play()
 	$MobSpawner/MobTimer.stop()
 	get_tree().call_group("mobs", "queue_free")
@@ -50,7 +48,6 @@ func new_game():
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")	
-	$Shoot_Timer.wait_time = 1.0/$Player.base_attack_speed
 
 
 

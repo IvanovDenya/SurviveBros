@@ -1,19 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://r5q7d36rut6j"]
+[gd_scene load_steps=5 format=3 uid="uid://r5q7d36rut6j"]
 
 [ext_resource type="PackedScene" uid="uid://nr1gub46p85o" path="res://projectiles/player_projectile.tscn" id="1_545s1"]
 [ext_resource type="Texture2D" uid="uid://h2o7w7qofild" path="res://assets/attacks/bulet_2.png" id="2_1vvrb"]
+[ext_resource type="Script" path="res://projectiles/bullet_2.gd" id="2_fp28g"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iw6hr"]
-radius = 3.0
-height = 16.0
+radius = 4.0
+height = 22.0
 
 [node name="Bullet_2" instance=ExtResource("1_545s1")]
 mass = 0.01
+script = ExtResource("2_fp28g")
 travel_speed = 1000
 damage = 1000
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_1vvrb")
 
 [node name="CollisionShape2D" parent="." index="1"]
@@ -21,5 +23,5 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_iw6hr")
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="2"]
-position = Vector2(-2, 0)
-scale = Vector2(0.85, 0.3125)
+position = Vector2(-1, 0)
+scale = Vector2(1.025, 0.3125)

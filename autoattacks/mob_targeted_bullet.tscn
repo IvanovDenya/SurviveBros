@@ -8,3 +8,4 @@
 script = ExtResource("2_m8xvy")
 bulletObj = ExtResource("3_4e6da")
 self_attack_speed_modifier = 3.0
+base_cooldown_seconds = 2.0

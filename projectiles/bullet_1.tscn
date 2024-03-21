@@ -9,8 +9,6 @@ radius = 5.0
 [node name="Bullet_1" instance=ExtResource("1_0gq15")]
 collision_layer = 0
 mass = 0.01
-max_contacts_reported = 1
-contact_monitor = true
 travel_speed = 500
 damage = 500
 
@@ -26,5 +24,3 @@ shape = SubResource("CapsuleShape2D_5tvf4")
 [node name="VisibleOnScreenNotifier2D" parent="." index="2"]
 position = Vector2(-5, 0)
 scale = Vector2(1.9, 0.6)
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

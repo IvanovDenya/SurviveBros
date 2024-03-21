@@ -19,10 +19,15 @@ func objects_to_spawn():
 	for i in attack_loop_count:
 		var bullet = bulletObj.instantiate()
 		bullet.position = user.get_global_position()
-		var rng_rotation = GlobalF.get_random_rotation_radians()
-		bullet.rotation = rng_rotation
 		var velocity = Vector2(bullet.travel_speed, 0.0)
-		bullet.linear_velocity = velocity.rotated(rng_rotation)
+		var target = find_closest_mob(bullet)
+		if target == null:
+			bullet.linear_velocity = velocity.rotated(GlobalF.get_random_rotation_radians());
+		else:
+			var direction = bullet.global_position.direction_to(target.global_position)
+			bullet.linear_velocity = direction * bullet.travel_speed
+			bullet.rotation = bullet.global_position.angle_to_point(target.global_position)
+			bullet.target = target
 		spawn_arr.append(bullet)
 	
 	var estimated_wait_time =  base_cooldown_seconds*self_attack_speed_modifier/user.current_attack_speed
@@ -33,3 +38,13 @@ func objects_to_spawn():
 		$Cooldown.wait_time = estimated_wait_time
 		
 	return spawn_arr
+
+func find_closest_mob(from_body):
+	var min_distance = 10000000.0
+	var mobs = get_tree().get_nodes_in_group("mobs")
+	var target = null
+	for mob in mobs:
+		if from_body.global_position.distance_to(mob.global_position) < min_distance:
+			min_distance = from_body.global_position.distance_to(mob.global_position)
+			target = mob
+	return target
