@@ -21,8 +21,7 @@ func _on_hp_controller_hp_zero():
 		main_scene.call_deferred("add_child", spawning_object)
 	queue_free()
 
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -39,7 +38,6 @@ func _ready():
 
 func mob_animation():
 	if linear_velocity.length() > 0:
-		linear_velocity = linear_velocity.normalized() * movement_speed
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()

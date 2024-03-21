@@ -13,6 +13,6 @@ func _process(_delta):
 	pass
 
 
-func _on_body_entered_bullet1(body):
+func _on_body_entered_bullet1(_body):
 	hide()
 	queue_free()

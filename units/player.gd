@@ -7,7 +7,7 @@ signal spawn_something(to_spawn)
 #Базовая скорость
 @export var speed = 300
 #Скорость в деше
-@export var dash_speed = 3000
+@export var dash_speed = 1800
 #Базовая скорость атак - атак в секунду
 @export var base_attack_speed = 2
 
@@ -153,15 +153,15 @@ func enable_autoattacks():
 
 #Занимается анимациями. Можно менять как угодно
 func player_animation():
-	var h_direction = Input.get_axis("move_left","move_right")
-	
-	if h_direction:
-		velocity.x = h_direction * speed
+	#var h_direction = Input.get_axis("move_left","move_right")
+	if current_velocity.length() > 0:
+	#if h_direction:
+		#velocity.x = h_direction * speed
 		ram_anim.play("rambro_run")
-		if sign(ram_sprite.scale.x) != sign (velocity.x):
+		if sign(ram_sprite.scale.x) != sign (velocity.x) and velocity.x != 0:
 			ram_sprite.scale.x *= -1
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		#velocity.x = move_toward(velocity.x, 0, speed)
 		ram_anim.stop()
 	
 

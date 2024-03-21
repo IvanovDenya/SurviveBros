@@ -20,6 +20,6 @@ func _process(_delta):
 
 
 
-func _on_body_entered_bullet2(body):
+func _on_body_entered_bullet2(_body):
 	hide()
 	queue_free()
