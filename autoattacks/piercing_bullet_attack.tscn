@@ -7,4 +7,6 @@
 [node name="PiercingBulletAttack" instance=ExtResource("1_4nqdb")]
 script = ExtResource("2_iyuj5")
 bulletObj = ExtResource("3_k7hvy")
-self_attack_speed_modifier = 0.4
+self_attack_speed_modifier = 4.0
+base_cooldown_seconds = 3.0
+attack_amount = 20

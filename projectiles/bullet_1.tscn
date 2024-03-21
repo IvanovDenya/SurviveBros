@@ -7,9 +7,10 @@
 radius = 5.0
 
 [node name="Bullet_1" instance=ExtResource("1_0gq15")]
+z_index = 95
 collision_layer = 0
 mass = 0.01
-travel_speed = 500
+travel_speed = 600
 damage = 500
 
 [node name="Sprite2D" parent="." index="0"]

@@ -8,7 +8,7 @@ signal spawn_something(to_spawn)
 
 @export var speed = 300
 @export var dash_speed = 3000
-@export var base_attack_speed = 5
+@export var base_attack_speed = 2
 
 
 var current_velocity = Vector2.ZERO

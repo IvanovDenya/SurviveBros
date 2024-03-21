@@ -13,7 +13,7 @@ enum Unit_state {
 
 const mob_spawn_rate_increase_per_second_percents = 5
 const max_spawn_rate_percents = 2000
-const player_atk_speed_increase_rate_per_lvl_percents = 150
+const player_atk_speed_increase_rate_per_lvl_percents = 20
 const player_max_atk_speed = 40.0
 const mob_movespeed_increase_per_second_percents = 2
 const player_movespeed_increase_per_lvl_percents = 10

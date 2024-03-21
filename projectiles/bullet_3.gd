@@ -1,6 +1,6 @@
 extends "res://projectiles/projectile.gd"
 
-var kill_count = 1
+var kill_count = 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,8 +15,9 @@ func _process(_delta):
 
 func _on_body_entered_bullet3(body):
 	if (kill_count > 0):
-		add_collision_exception_with(body)
+		linear_velocity *= -3.3
 		kill_count -=1;
+		add_collision_exception_with(body)
 	else:
 		hide()
 		queue_free()

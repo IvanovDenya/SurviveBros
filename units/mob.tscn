@@ -26,7 +26,7 @@ radius = 19.4033
 height = 38.8067
 
 [node name="Mob" type="RigidBody2D" groups=["Mobs", "mobs"]]
-z_index = 90
+z_index = 50
 collision_layer = 4
 collision_mask = 13
 mass = 50.0

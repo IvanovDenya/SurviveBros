@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://projectiles/bullet_1.gd" id="1_bjia7"]
 
 [node name="Projectile" type="RigidBody2D"]
+z_index = 90
 max_contacts_reported = 1
 contact_monitor = true
 script = ExtResource("1_bjia7")

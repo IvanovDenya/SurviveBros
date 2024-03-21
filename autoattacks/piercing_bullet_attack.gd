@@ -19,7 +19,7 @@ func objects_to_spawn():
 	#returns array of ready objects to add to main scene like bullets etc
 	#number of objects is multiplied by attack_loop_count
 	#attack_loop_count is increased if Cooldown.waittime shall become < 0.1 sec
-	for i in attack_loop_count:
+	for i in attack_loop_count * attack_amount:
 		var bullet = bulletObj.instantiate()
 		bullet.position = user.get_global_position()
 		var rng_rotation = GlobalF.get_random_rotation_radians()

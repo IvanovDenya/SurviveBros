@@ -7,3 +7,4 @@
 [node name="RandomAntiMobBulletAttack" groups=["autoattacks"] instance=ExtResource("1_5fknx")]
 script = ExtResource("2_t06xo")
 bulletObj = ExtResource("3_iejcr")
+self_attack_speed_modifier = 0.6

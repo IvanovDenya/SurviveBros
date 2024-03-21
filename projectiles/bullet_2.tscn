@@ -9,6 +9,7 @@ radius = 4.0
 height = 22.0
 
 [node name="Bullet_2" instance=ExtResource("1_545s1")]
+z_index = 97
 mass = 0.01
 script = ExtResource("2_fp28g")
 travel_speed = 1000

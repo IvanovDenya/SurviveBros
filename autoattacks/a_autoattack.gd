@@ -4,6 +4,7 @@ var attack_loop_count = 1
 var user = null
 @export var self_attack_speed_modifier = 1.0
 @export var base_cooldown_seconds = 1.0
+@export var attack_amount = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
