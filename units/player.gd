@@ -5,9 +5,11 @@ signal spawn_something(to_spawn)
 @onready var ram_shoot = $RambroShoot
 @onready var ram_run = $RambroRun
 
-
+#Базовая скорость
 @export var speed = 300
+#Скорость в деше
 @export var dash_speed = 3000
+#Базовая скорость атак - атак в секунду
 @export var base_attack_speed = 2
 
 
@@ -15,19 +17,26 @@ var current_velocity = Vector2.ZERO
 var current_speed = 0
 var state = GlobalInfo.Unit_state.Idle
 var current_attack_speed = base_attack_speed
+#I-фреймы
 var hitboxes_hidden = false
+#Множитель скорости
 var move_speed_modifier = 1
+
 var current_lvl = 0
+#Массив сцен автоатак
 var autoattacks = []
 
+#Вызывается при коллизии
 func _on_body_entered(body):
 	if body.is_in_group("mobs"):
 		die()
 
+#Вызывается при контакте с другими Area2D. Пока что - бочки, потом ещё доп. бро
 func _on_detection_area_area_entered(area):
 	if area.is_in_group("xp_objects"):
 		$XpController.add_xp(area.xp_value)
 
+#Вызывается при лвл-апе, повышает статы
 func _on_xp_controller_lvl_up():
 	current_attack_speed *= 1 + GlobalInfo.player_atk_speed_increase_rate_per_lvl_percents / 100.0
 	current_attack_speed = min (GlobalInfo.player_max_atk_speed, current_attack_speed)
@@ -40,8 +49,10 @@ func _physics_process(_delta):
 		pass
 	if (state == GlobalInfo.Unit_state.Dead):
 		pass
+	#Эта функция ТОЛЬКО устанавливает состояние игрока
 	player_dash()
 	
+	#i-фреймы от деша
 	if (state == GlobalInfo.Unit_state.Dash) and not hitboxes_hidden:
 		set_hitboxes(false)
 		hitboxes_hidden = true
@@ -49,15 +60,19 @@ func _physics_process(_delta):
 		set_hitboxes(true)
 		hitboxes_hidden = false
 				
-	
+	#Расчет velocity игрока исходя из состояния
 	player_movement()
+	#Анимация игрока исходя из velocity
 	player_animation()
+	
+	#Завершить процесс движением body
 	move_and_slide()
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
 
+#Вызывается при каждом откате автоатаки, получает от автоатаки список готовых пуль и передаёт их в Main
 func _on_autoattack_ready(autoattack):
 	var to_spawn = autoattack.objects_to_spawn()
 	spawn_something.emit(to_spawn)
@@ -70,6 +85,7 @@ func die():
 	set_hitboxes(false)
 	state = GlobalInfo.Unit_state.Dead
 
+#Функция заполняет дефолтные автоатаки. У каждого бро по идее свой набор
 func autofill_autoattacks():	
 	for autoattack in autoattacks:
 		autoattack.queue_free()
@@ -99,7 +115,7 @@ func autofill_autoattacks():
 	autoattacks.append(targetbullet_obj)
 	add_child(targetbullet_obj)
 		
-
+#Добавляет автоатаку в массив атак бро
 func add_autoattack(autoattack_path):
 	var autoattack = load(autoattack_path)
 	var autoattack_obj = autoattack.instantiate()
@@ -109,27 +125,33 @@ func add_autoattack(autoattack_path):
 	autoattacks.append(autoattack_obj)
 	add_child(autoattack_obj)
 
-#ETODO Annotation
+#Вычисляет current_velocity исходя из состояния
 func calculate_current_velocity():
+	#В нормальном состоянии считаем велосити из инпута
 	if state == GlobalInfo.Unit_state.Normal:
 		var x_move = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 		var y_move = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 		var move = Vector2(x_move,y_move)
 		
 		current_velocity = move.normalized() * current_speed * move_speed_modifier
+	#При Деше сохраняем направление постоянным
 	elif state == GlobalInfo.Unit_state.Dash:
 		current_velocity = current_velocity.normalized() * current_speed * move_speed_modifier
+	#Если мертвы - не двигаемся
 	else:
 		current_velocity = Vector2.ZERO
 
+#Отключает все автоатаки
 func disable_autoattacks():
 	for autoattack in autoattacks:
 		autoattack.disable_attack()
 		
+#Включает все автоатаки
 func enable_autoattacks():
 	for autoattack in autoattacks:
 		autoattack.enable_attack()
 
+#Занимается анимациями. Можно менять как угодно
 func player_animation():
 	if current_velocity.length() > 0:
 		ram_run.play()
@@ -145,21 +167,25 @@ func player_animation():
 		ram_run.flip_h = false
 		ram_shoot.flip_h = false
 
+#Задаёт плееру velocity исходя из состояния
 func player_movement():
 	current_speed = (dash_speed if state == GlobalInfo.Unit_state.Dash else speed)
 	calculate_current_velocity()
 	velocity = current_velocity
 
+
 func player_dash():
 	if Input.is_action_pressed("player_dash"):
 		$Dash.execute(self)
 
+#Начало деятельности игрока
 func start(pos):
 	position = pos
 	state = GlobalInfo.Unit_state.Normal
 	show()
-	$CollisionShape2D.disabled = false
+	set_hitboxes(true)
 
+#Переключает хитбоксы для i-фреймов
 func set_hitboxes(value):
 	$CollisionShape2D.set_deferred("disabled", not value)
 	$DetectionArea/CollisionShape2D.set_deferred("disabled", not value)
