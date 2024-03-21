@@ -3,7 +3,6 @@ extends RigidBody2D
 @export var max_hp = 1000
 @export var movement_speed = 100
 @export var xp_dropped = 3
-var speed_modifier = 1
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
@@ -26,6 +25,7 @@ func _on_hp_controller_hp_zero():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	var direction = global_position.direction_to(player.global_position)
+	var speed_modifier = (1 + GlobalInfo.mob_movespeed_increase_per_second_percents * GlobalInfo.accumulated_time / 100.0)
 	linear_velocity = direction * movement_speed * speed_modifier
 	mob_animation()
 

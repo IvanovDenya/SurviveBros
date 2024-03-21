@@ -15,6 +15,7 @@ func _on_player_spawn_something(to_spawn):
 	
 func _on_score_timer_timeout():
 	score += 1
+	GlobalInfo.accumulated_time+=1
 	$HUD.update_score(score)
 	
 
@@ -45,6 +46,7 @@ func _on_death_sound_finished():
 
 func new_game():
 	score = 0
+	GlobalInfo.accumulated_time = 0
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")	
