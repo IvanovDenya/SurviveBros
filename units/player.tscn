@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cd5oocw5teo6p"]
+[gd_scene load_steps=12 format=3 uid="uid://cd5oocw5teo6p"]
 
 [ext_resource type="Script" path="res://units/player.gd" id="1_h0hgi"]
 [ext_resource type="Texture2D" uid="uid://cmdr4ssctny87" path="res://assets/textures/bros/RAMBO_anim.png" id="2_100mh"]
@@ -6,81 +6,95 @@
 [ext_resource type="PackedScene" uid="uid://bm67pxhxxjfs" path="res://logic/xp_controller.tscn" id="5_q6uj5"]
 [ext_resource type="PackedScene" uid="uid://bvpfma7nwo0kr" path="res://actives/dash.tscn" id="6_0tsuv"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pnk6r"]
-atlas = ExtResource("2_100mh")
-region = Rect2(0, 0, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bt03q"]
-atlas = ExtResource("2_100mh")
-region = Rect2(32, 0, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sndy7"]
-atlas = ExtResource("2_100mh")
-region = Rect2(64, 0, 32, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jwhvg"]
-atlas = ExtResource("2_100mh")
-region = Rect2(96, 0, 32, 36)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_iqtam"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pnk6r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bt03q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sndy7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jwhvg")
-}],
-"loop": true,
-"name": &"run",
-"speed": 15.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_eeb6d"]
-atlas = ExtResource("3_7qxt4")
-region = Rect2(0, 16, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mgtm7"]
-atlas = ExtResource("3_7qxt4")
-region = Rect2(32, 16, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mwsfb"]
-atlas = ExtResource("3_7qxt4")
-region = Rect2(64, 16, 32, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p8hl1"]
-atlas = ExtResource("3_7qxt4")
-region = Rect2(96, 16, 32, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_mdi52"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eeb6d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mgtm7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mwsfb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p8hl1")
-}],
-"loop": true,
-"name": &"shoot",
-"speed": 15.0
-}]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nm205"]
 radius = 27.0
 height = 68.0
+
+[sub_resource type="Animation" id="Animation_qco4x"]
+resource_name = "rambro_run"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rambro:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_o72mu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rambro:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rambro/RambroShoot:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0yvvq"]
+resource_name = "rambro_shoot"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rambro/RambroShoot:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vse6r"]
+resource_name = "rambro_death"
+length = 2.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rambro:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3d3qp"]
+_data = {
+"RESET": SubResource("Animation_o72mu"),
+"rambro_death": SubResource("Animation_vse6r"),
+"rambro_run": SubResource("Animation_qco4x"),
+"rambro_shoot": SubResource("Animation_0yvvq")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["Player", "player"]]
 z_index = 100
@@ -89,18 +103,20 @@ collision_mask = 33
 script = ExtResource("1_h0hgi")
 metadata/_edit_group_ = true
 
-[node name="RambroRun" type="AnimatedSprite2D" parent="."]
+[node name="Rambro" type="Sprite2D" parent="."]
 texture_filter = 3
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_iqtam")
-animation = &"run"
+position = Vector2(1, -18)
+scale = Vector2(3, 3)
+texture = ExtResource("2_100mh")
+hframes = 32
+vframes = 16
 
-[node name="RambroShoot" type="AnimatedSprite2D" parent="."]
-texture_filter = 3
-position = Vector2(0, 14)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_mdi52")
-animation = &"shoot"
+[node name="RambroShoot" type="Sprite2D" parent="Rambro"]
+position = Vector2(0, 8.66667)
+texture = ExtResource("3_7qxt4")
+hframes = 32
+vframes = 4
+frame = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_nm205")
@@ -123,6 +139,11 @@ collision_mask = 52
 shape = SubResource("CapsuleShape2D_nm205")
 
 [node name="XpController" parent="." instance=ExtResource("5_q6uj5")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3d3qp")
+}
 
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_body_entered"]

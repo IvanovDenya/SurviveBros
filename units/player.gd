@@ -2,9 +2,8 @@ extends CharacterBody2D
 signal hit
 signal spawn_something(to_spawn)
 
-@onready var ram_shoot = $RambroShoot
-@onready var ram_run = $RambroRun
-
+@onready var ram_anim = $AnimationPlayer
+@onready var ram_sprite = $Rambro
 #Базовая скорость
 @export var speed = 300
 #Скорость в деше
@@ -80,6 +79,7 @@ func _on_autoattack_ready(autoattack):
 
 #handles player death
 func die():
+	#ram_anim.play("rambro_death")
 	hide()
 	hit.emit()
 	set_hitboxes(false)
@@ -153,19 +153,17 @@ func enable_autoattacks():
 
 #Занимается анимациями. Можно менять как угодно
 func player_animation():
-	if current_velocity.length() > 0:
-		ram_run.play()
-		ram_shoot.play()
+	var h_direction = Input.get_axis("move_left","move_right")
+	
+	if h_direction:
+		velocity.x = h_direction * speed
+		ram_anim.play("rambro_run")
+		if sign(ram_sprite.scale.x) != sign (velocity.x):
+			ram_sprite.scale.x *= -1
 	else:
-		ram_run.stop()
-		ram_shoot.stop()
-		
-	if velocity.x < 0:
-		ram_run.flip_h = true
-		ram_shoot.flip_h = true
-	elif velocity.x > 0:
-		ram_run.flip_h = false
-		ram_shoot.flip_h = false
+		velocity.x = move_toward(velocity.x, 0, speed)
+		ram_anim.stop()
+	
 
 #Задаёт плееру velocity исходя из состояния
 func player_movement():
