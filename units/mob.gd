@@ -11,6 +11,7 @@ var speed_modifier = 1
 func _on_body_entered(body):
 	if body.is_in_group("player_projectiles"):
 		$HpController.modify_hp(body.damage, GlobalInfo.HP_modifier_type.Flat)
+		add_collision_exception_with(body)
 
 #Mob dead
 func _on_hp_controller_hp_zero():

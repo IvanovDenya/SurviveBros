@@ -83,13 +83,21 @@ func autofill_autoattacks():
 	autoattacks.append(randombullet_obj)
 	add_child(randombullet_obj)
 	
-	var randombullet2 = load("res://autoattacks/mob_targeted_bullet.tscn")
+	var randombullet2 = load("res://autoattacks/piercing_bullet_attack.tscn")
 	var randombullet_obj2 = randombullet2.instantiate()
 	randombullet_obj2.user = self
 	randombullet_obj2.ready_attack.connect(_on_autoattack_ready)
 	randombullet_obj2.set_cooldown(randombullet_obj2.get_default_cooldown()/current_attack_speed)
 	autoattacks.append(randombullet_obj2)
 	add_child(randombullet_obj2)
+	
+	var targetbullet = load("res://autoattacks/mob_targeted_bullet.tscn")
+	var targetbullet_obj = targetbullet.instantiate()
+	targetbullet_obj.user = self
+	targetbullet_obj.ready_attack.connect(_on_autoattack_ready)
+	targetbullet_obj.set_cooldown(targetbullet_obj.get_default_cooldown()/current_attack_speed)
+	autoattacks.append(targetbullet_obj)
+	add_child(targetbullet_obj)
 		
 
 func add_autoattack(autoattack_path):

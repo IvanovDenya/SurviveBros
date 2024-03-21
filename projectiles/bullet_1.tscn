@@ -24,3 +24,5 @@ shape = SubResource("CapsuleShape2D_5tvf4")
 [node name="VisibleOnScreenNotifier2D" parent="." index="2"]
 position = Vector2(-5, 0)
 scale = Vector2(1.9, 0.6)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered_bullet1"]

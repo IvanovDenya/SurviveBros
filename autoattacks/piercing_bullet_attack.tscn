@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgoliuhejp83d"]
+
+[ext_resource type="PackedScene" uid="uid://dycwy0aaxsvjm" path="res://autoattacks/a_autoattack.tscn" id="1_4nqdb"]
+[ext_resource type="Script" path="res://autoattacks/piercing_bullet_attack.gd" id="2_iyuj5"]
+[ext_resource type="PackedScene" uid="uid://v315er3l2vec" path="res://projectiles/bullet_3.tscn" id="3_k7hvy"]
+
+[node name="PiercingBulletAttack" instance=ExtResource("1_4nqdb")]
+script = ExtResource("2_iyuj5")
+bulletObj = ExtResource("3_k7hvy")
+self_attack_speed_modifier = 0.4

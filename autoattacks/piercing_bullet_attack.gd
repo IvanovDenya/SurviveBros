@@ -1,5 +1,4 @@
 extends "res://autoattacks/a_autoattack.gd"
-
 @export var bulletObj:Resource
 
 # Called when the node enters the scene tree for the first time.
@@ -10,7 +9,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
-	
+
+
 func _on_cooldown_timeout():
 	ready_attack.emit(self)
 	
@@ -36,6 +36,3 @@ func objects_to_spawn():
 		$Cooldown.wait_time = estimated_wait_time
 		
 	return spawn_arr
-
-
-

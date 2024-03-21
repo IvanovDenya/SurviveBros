@@ -18,5 +18,4 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_body_entered(_body):
-	hide()
-	queue_free()
+	pass
