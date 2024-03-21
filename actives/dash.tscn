@@ -7,7 +7,7 @@
 script = ExtResource("2_cqf3s")
 
 [node name="EndDashTimer" type="Timer" parent="." index="1"]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
 [connection signal="timeout" from="EndDashTimer" to="." method="_on_end_dash_timer_timeout"]

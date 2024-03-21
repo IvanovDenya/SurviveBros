@@ -7,7 +7,7 @@ signal spawn_something(to_spawn)
 #Базовая скорость
 @export var speed = 300
 #Скорость в деше
-@export var dash_speed = 1800
+@export var dash_speed = 1500
 #Базовая скорость атак - атак в секунду
 @export var base_attack_speed = 2
 
@@ -136,7 +136,12 @@ func player_animation():
 	if current_velocity.length() > 0:
 	#if h_direction:
 		#velocity.x = h_direction * speed
-		ram_anim.play("rambro_run")
+		if state == GlobalInfo.Unit_state.Normal:
+			ram_anim.play("rambro_run")
+		elif state == GlobalInfo.Unit_state.Dash:
+			#ram_anim.play("rambro_dash")
+			pass
+		
 		if sign(ram_sprite.scale.x) != sign (velocity.x) and velocity.x != 0:
 			ram_sprite.scale.x *= -1
 	else:
