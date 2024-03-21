@@ -80,24 +80,26 @@ contact_monitor = true
 script = ExtResource("1_ebpeh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(5, -10)
+position = Vector2(-6, -10)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_x1lww")
 animation = &"walk"
 frame_progress = 0.955569
 
 [node name="HpBar" parent="." instance=ExtResource("8_2ykid")]
-offset_left = -37.0
-offset_top = -48.0
-offset_right = 229.0
-offset_bottom = 2.0
-scale = Vector2(0.3, 0.2)
+offset_left = -33.0
+offset_top = -39.0
+offset_right = 233.0
+offset_bottom = 11.0
+scale = Vector2(0.25, 0.2)
 
 [node name="HpController" parent="." instance=ExtResource("9_0kf8y")]
 
 [node name="XpSpawner" parent="." instance=ExtResource("6_oswkd")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-9.2883, 1.16053)
+scale = Vector2(0.988782, 0.960526)
 polygon = PackedVector2Array(-13, 18, 25, 18, 25, -20, 10, -20, -14, 4)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
