@@ -100,7 +100,7 @@ scale = Vector2(0.25, 0.2)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-9.2883, 1.16053)
 scale = Vector2(0.988782, 0.960526)
-polygon = PackedVector2Array(-19.9353, 26.9014, -19.9353, 6.07945, -14.8786, 6.07945, 10.405, -22.0301, 23.5525, -22.0301, 31.6433, -13.7014, 31.6433, -3.29042, 23.5525, -3.29042, 23.5525, 9.20274, 28.6092, 16.4904, 28.6092, 27.9425, 23.5525, 27.9425)
+polygon = PackedVector2Array(-19.9353, 27.9425, -19.9353, 6.07945, -14.8786, 6.07945, 10.405, -22.0301, 23.5525, -22.0301, 31.6433, -13.7014, 31.6433, -3.29042, 23.5525, -3.29042, 23.5525, 9.20274, 28.6092, 16.4904, 28.6092, 27.9425, 23.5525, 27.9425)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="hp_zero" from="HpController" to="." method="_on_hp_controller_hp_zero"]
