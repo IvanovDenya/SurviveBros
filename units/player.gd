@@ -75,8 +75,8 @@ func _on_autoattack_ready(autoattack):
 
 #handles player death
 func die():
-	#ram_anim.play("rambro_death")
-	hide()
+	ram_anim.play("rambro_death")
+	#hide()
 	hit.emit()
 	set_hitboxes(false)
 	state = GlobalInfo.Unit_state.Dead
