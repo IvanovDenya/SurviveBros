@@ -77,7 +77,6 @@ func spawn_mob(mob_spawn_info):
 	var final_num = base_num + floor(base_num *  GlobalInfo.mob_spawn_rate_increase_per_second_percents * accumulated_time / 100.0)
 	final_num = min(GlobalInfo.max_spawn_rate_percents / 100.0 * base_num, final_num)
 	
-	print("Mobs spawning : " + str(final_num))
 	for i in final_num:
 		var mob = new_mob.instantiate()
 		mob.global_position = get_random_position()

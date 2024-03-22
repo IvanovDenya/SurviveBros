@@ -34,7 +34,7 @@ func objects_to_spawn():
 	
 	var base_wait_time = base_cooldown_seconds/ user.base_attack_speed
 	var user_as_mod = (user.current_attack_speed / user.base_attack_speed) - 1
-	var estimated_wait_time = base_wait_time * (1 + user_as_mod * ext_attack_speed_modifier)
+	var estimated_wait_time = base_wait_time / (1 + user_as_mod * ext_attack_speed_modifier)
 	if estimated_wait_time < 0.1:
 		$Cooldown.wait_time = 0.1
 		attack_loop_count = int(0.1 / estimated_wait_time)

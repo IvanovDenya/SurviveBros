@@ -71,8 +71,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qgtcg"]
-radius = 29.0
-height = 74.0
+radius = 12.0
+height = 24.0
 
 [node name="Mob" type="CharacterBody2D" groups=["Mobs", "mobs"]]
 z_index = 50
@@ -99,6 +99,7 @@ scale = Vector2(0.25, 0.2)
 [node name="XpSpawner" parent="." instance=ExtResource("6_oswkd")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 5)
 shape = SubResource("CapsuleShape2D_qgtcg")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -110,5 +111,10 @@ position = Vector2(-9.2883, 1.16053)
 scale = Vector2(0.988782, 0.960526)
 polygon = PackedVector2Array(-11.8446, 17.5315, 20.5185, 17.5315, 19.5071, -5.37261, 24.5639, -8.4959, 20.5185, -15.7836, 9.39368, -15.7836, -6.78785, 0.873969)
 
+[node name="UpdateMoveTimer" type="Timer" parent="."]
+wait_time = 0.16
+autostart = true
+
 [connection signal="hp_zero" from="HpController" to="." method="_on_hp_controller_hp_zero"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="UpdateMoveTimer" to="." method="_on_update_move_timer_timeout"]

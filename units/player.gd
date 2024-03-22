@@ -35,12 +35,12 @@ func _on_detection_area_area_entered(area):
 
 #Вызывается при лвл-апе, повышает статы
 func _on_xp_controller_lvl_up():
-	current_attack_speed *= 1 + GlobalInfo.player_atk_speed_increase_rate_per_lvl_percents / 100.0
+	current_attack_speed = base_attack_speed * (1 + GlobalInfo.player_atk_speed_increase_rate_per_lvl_percents * current_lvl / 100.0)
 	current_attack_speed = min (GlobalInfo.player_max_atk_speed, current_attack_speed)
 	current_lvl+= 1
 	move_speed_modifier = (1 + GlobalInfo.player_movespeed_increase_per_lvl_percents * current_lvl / 100.0)
 	
-func _physics_process(_delta):
+func _process(_delta):
 	
 	if (state == GlobalInfo.Unit_state.Idle):
 		pass
