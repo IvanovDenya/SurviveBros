@@ -135,8 +135,7 @@ func player_animation():
 		if state == GlobalInfo.Unit_state.Normal:
 			ram_anim.play("rambro_run")
 		elif state == GlobalInfo.Unit_state.Dash:
-			#ram_anim.play("rambro_dash")
-			pass
+			ram_anim.play("rambro_dash")
 			
 		
 		if sign(ram_sprite.scale.x) != sign (velocity.x) and velocity.x != 0:
