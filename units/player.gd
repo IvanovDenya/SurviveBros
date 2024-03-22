@@ -71,6 +71,7 @@ func _ready():
 func _on_autoattack_ready(autoattack):
 	var to_spawn = autoattack.objects_to_spawn()
 	spawn_something.emit(to_spawn)
+	ram_anim.play("rambro_shoot")
 	
 
 #handles player death
@@ -136,7 +137,6 @@ func player_animation():
 			ram_anim.play("rambro_run")
 		elif state == GlobalInfo.Unit_state.Dash:
 			ram_anim.play("rambro_dash")
-			
 		
 		if sign(ram_sprite.scale.x) != sign (velocity.x) and velocity.x != 0:
 			ram_sprite.scale.x *= -1

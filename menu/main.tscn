@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cd5oocw5teo6p" path="res://units/player.tscn" id="3_pcdji"]
 [ext_resource type="PackedScene" uid="uid://bykmj3v0gofwe" path="res://menu/hud.tscn" id="4_rh2o6"]
 [ext_resource type="AudioStream" uid="uid://c6i8kaw8k8euv" path="res://assets/sound/House In a Forest Loop.ogg" id="5_6d3v7"]
-[ext_resource type="AudioStream" uid="uid://8aabhnsb33y7" path="res://assets/sound/gameover.wav" id="6_aelrn"]
+[ext_resource type="AudioStream" uid="uid://o3juvbvadf4b" path="res://assets/sound/rest in peace bro.wav" id="6_qquc5"]
 [ext_resource type="PackedScene" uid="uid://caet17xd7u43a" path="res://utility/mob_spawner.tscn" id="7_av77f"]
 [ext_resource type="PackedScene" uid="uid://cbo3vv61qykfg" path="res://enviroment/invisible_borders.tscn" id="8_33pqm"]
 [ext_resource type="PackedScene" uid="uid://bpa2be6q0wcwa" path="res://menu/menu.tscn" id="9_7aevu"]
@@ -39,7 +39,7 @@ position = Vector2(938, 539)
 stream = ExtResource("5_6d3v7")
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_aelrn")
+stream = ExtResource("6_qquc5")
 
 [node name="MobSpawner" parent="." instance=ExtResource("7_av77f")]
 

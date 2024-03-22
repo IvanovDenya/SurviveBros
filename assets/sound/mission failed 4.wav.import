@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b5edk4ebjay47"
+path="res://.godot/imported/mission failed 4.wav-24cbb9c7dc5931b8ea46563b1b5d7266.sample"
+
+[deps]
+
+source_file="res://assets/sound/mission failed 4.wav"
+dest_files=["res://.godot/imported/mission failed 4.wav-24cbb9c7dc5931b8ea46563b1b5d7266.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
