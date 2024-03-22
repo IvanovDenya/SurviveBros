@@ -25,15 +25,13 @@ var current_lvl = 0
 #Массив сцен автоатак
 var autoattacks = []
 
-#Вызывается при коллизии
-func _on_body_entered(body):
-	if body.is_in_group("mobs"):
-		die()
-
 #Вызывается при контакте с другими Area2D. Пока что - бочки, потом ещё доп. бро
 func _on_detection_area_area_entered(area):
 	if area.is_in_group("xp_objects"):
 		$XpController.add_xp(area.xp_value)
+		return
+	if area.owner.is_in_group("mobs"):
+		die()
 
 #Вызывается при лвл-апе, повышает статы
 func _on_xp_controller_lvl_up():
@@ -171,4 +169,4 @@ func start(pos):
 #Переключает хитбоксы для i-фреймов
 func set_hitboxes(value):
 	$CollisionShape2D.set_deferred("disabled", not value)
-	$DetectionArea/polygon.set_deferred("disabled", not value)
+	$MobDetection/polygon.set_deferred("disabled", not value)

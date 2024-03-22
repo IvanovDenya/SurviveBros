@@ -131,11 +131,11 @@ limit_bottom = 9600
 limit_smoothed = true
 editor_draw_limits = true
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="MobDetection" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 52
 
-[node name="polygon" type="CollisionPolygon2D" parent="DetectionArea"]
+[node name="polygon" type="CollisionPolygon2D" parent="MobDetection"]
 polygon = PackedVector2Array(-14, 14, 7, 14, 7, 2, 13, 2, 13, -12, 10, -12, 10, -24, -2, -24, -2, -12, -11, -12, -11, 0, -14, 0, -14, 8)
 
 [node name="XpController" parent="." instance=ExtResource("5_q6uj5")]
@@ -145,6 +145,5 @@ libraries = {
 "": SubResource("AnimationLibrary_3d3qp")
 }
 
-[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_body_entered"]
+[connection signal="area_entered" from="MobDetection" to="." method="_on_detection_area_area_entered"]
 [connection signal="lvl_up" from="XpController" to="." method="_on_xp_controller_lvl_up"]
