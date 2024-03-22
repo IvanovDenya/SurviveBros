@@ -71,7 +71,7 @@ func _ready():
 func _on_autoattack_ready(autoattack):
 	var to_spawn = autoattack.objects_to_spawn()
 	spawn_something.emit(to_spawn)
-	ram_anim.play("rambro_shoot")
+	#ram_anim.play("rambro_shoot")
 	
 
 #handles player death
