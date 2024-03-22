@@ -17,7 +17,7 @@ var current_speed = 0
 var state = GlobalInfo.Unit_state.Idle
 var current_attack_speed = base_attack_speed
 #I-фреймы
-var hitboxes_hidden = false
+var hitboxes_enabled = false
 #Множитель скорости
 var move_speed_modifier = 1
 
@@ -30,7 +30,7 @@ func _on_detection_area_area_entered(area):
 	if area.is_in_group("xp_objects"):
 		$XpController.add_xp(area.xp_value)
 		return
-	if area.owner.is_in_group("mobs"):
+	if area.owner.is_in_group("mobs") and hitboxes_enabled:
 		die()
 
 #Вызывается при лвл-апе, повышает статы
@@ -50,12 +50,10 @@ func _physics_process(_delta):
 	player_dash()
 	
 	#i-фреймы от деша
-	if (state == GlobalInfo.Unit_state.Dash) and not hitboxes_hidden:
+	if (state == GlobalInfo.Unit_state.Dash) and hitboxes_enabled:
 		set_hitboxes(false)
-		hitboxes_hidden = true
-	if (state == GlobalInfo.Unit_state.Normal) and hitboxes_hidden:
+	if (state == GlobalInfo.Unit_state.Normal) and not hitboxes_enabled:
 		set_hitboxes(true)
-		hitboxes_hidden = false
 				
 	#Расчет velocity игрока исходя из состояния
 	player_movement()
@@ -168,5 +166,4 @@ func start(pos):
 
 #Переключает хитбоксы для i-фреймов
 func set_hitboxes(value):
-	$CollisionShape2D.set_deferred("disabled", not value)
-	$MobDetection/polygon.set_deferred("disabled", not value)
+	hitboxes_enabled = value
