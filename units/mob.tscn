@@ -77,19 +77,12 @@ height = 74.0
 [node name="Mob" type="CharacterBody2D" groups=["Mobs", "mobs"]]
 z_index = 50
 collision_layer = 4
-<<<<<<< Updated upstream
-collision_mask = 13
-mass = 50.0
-max_contacts_reported = 2
-contact_monitor = true
-=======
 collision_mask = 4
->>>>>>> Stashed changes
 script = ExtResource("1_ebpeh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-6, -10)
-scale = Vector2(2.5, 2.5)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_x1lww")
 animation = &"walk"
 frame_progress = 0.955569
@@ -115,11 +108,7 @@ collision_mask = 8
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2(-9.2883, 1.16053)
 scale = Vector2(0.988782, 0.960526)
-<<<<<<< Updated upstream
-polygon = PackedVector2Array(-19.9353, 27.9425, -19.9353, 6.07945, -14.8786, 6.07945, 10.405, -22.0301, 23.5525, -22.0301, 31.6433, -13.7014, 31.6433, -3.29042, 23.5525, -3.29042, 23.5525, 9.20274, 28.6092, 16.4904, 28.6092, 27.9425, 23.5525, 27.9425)
-=======
 polygon = PackedVector2Array(-11.8446, 17.5315, 20.5185, 17.5315, 19.5071, -5.37261, 24.5639, -8.4959, 20.5185, -15.7836, 9.39368, -15.7836, -6.78785, 0.873969)
->>>>>>> Stashed changes
 
 [connection signal="hp_zero" from="HpController" to="." method="_on_hp_controller_hp_zero"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbquadcfatgpy"]
+[gd_scene load_steps=6 format=3 uid="uid://d4caygp5mwmfi"]
 
 [ext_resource type="PackedScene" uid="uid://jcukvd5u2y7" path="res://projectiles/projectile.tscn" id="1_3gjgd"]
 [ext_resource type="Texture2D" uid="uid://h2o7w7qofild" path="res://assets/attacks/bulet_2.png" id="2_nuyf3"]
