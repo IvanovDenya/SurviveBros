@@ -2,9 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dycwy0aaxsvjm" path="res://autoattacks/a_autoattack.tscn" id="1_5fknx"]
 [ext_resource type="Script" path="res://autoattacks/random_anti_mob_bullet_attack.gd" id="2_t06xo"]
-[ext_resource type="PackedScene" uid="uid://x0vxm6ypp50w" path="res://projectiles/bullet_1.tscn" id="3_iejcr"]
+[ext_resource type="PackedScene" uid="uid://3utmdrphyibf" path="res://projectiles/basic_player_bullet.tscn" id="3_iejcr"]
 
 [node name="RandomAntiMobBulletAttack" groups=["autoattacks"] instance=ExtResource("1_5fknx")]
 script = ExtResource("2_t06xo")
 bulletObj = ExtResource("3_iejcr")
-self_attack_speed_modifier = 0.6

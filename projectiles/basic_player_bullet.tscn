@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://3utmdrphyibf"]
+
+[ext_resource type="PackedScene" uid="uid://jcukvd5u2y7" path="res://projectiles/projectile.tscn" id="1_qdueh"]
+[ext_resource type="Script" path="res://projectiles/basic_player_bullet.gd" id="2_y43uc"]
+[ext_resource type="Texture2D" uid="uid://br1ha63mkmidw" path="res://assets/attacks/bulet_1.png" id="3_5wvpu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l4f2p"]
+radius = 5.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ggawy"]
+radius = 5.0
+height = 26.0
+
+[node name="basic_bullet" groups=["player_projectiles"] instance=ExtResource("1_qdueh")]
+collision_mask = 0
+script = ExtResource("2_y43uc")
+travel_speed = 500
+damage = 500
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_5wvpu")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="1"]
+position = Vector2(-18, 0)
+scale = Vector2(0.4, 0.5)
+
+[node name="TargetDetectionArea" parent="." index="2"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="TargetDetectionArea" index="0"]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_l4f2p")
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ggawy")
+
+[connection signal="area_entered" from="TargetDetectionArea" to="." method="_on_target_detection_area_area_entered"]

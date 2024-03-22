@@ -2,10 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dycwy0aaxsvjm" path="res://autoattacks/a_autoattack.tscn" id="1_ijce3"]
 [ext_resource type="Script" path="res://autoattacks/mob_targeted_bullet.gd" id="2_m8xvy"]
-[ext_resource type="PackedScene" uid="uid://r5q7d36rut6j" path="res://projectiles/bullet_2.tscn" id="3_4e6da"]
+[ext_resource type="PackedScene" uid="uid://bbquadcfatgpy" path="res://projectiles/strong_player_bullet.tscn" id="3_4e6da"]
 
 [node name="MobTargetedBullet" instance=ExtResource("1_ijce3")]
 script = ExtResource("2_m8xvy")
 bulletObj = ExtResource("3_4e6da")
-self_attack_speed_modifier = 3.0
 base_cooldown_seconds = 2.0

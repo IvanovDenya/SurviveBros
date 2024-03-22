@@ -91,7 +91,7 @@ func autofill_autoattacks():
 		autoattack.queue_free()
 	autoattacks.clear()
 	add_autoattack("res://autoattacks/random_anti_mob_bullet_attack.tscn")
-	add_autoattack("res://autoattacks/piercing_bullet_attack.tscn")
+	#add_autoattack("res://autoattacks/piercing_bullet_attack.tscn")
 	add_autoattack("res://autoattacks/mob_targeted_bullet.tscn")
 		
 #Добавляет автоатаку в массив атак бро
@@ -139,7 +139,8 @@ func player_animation():
 		if state == GlobalInfo.Unit_state.Normal:
 			ram_anim.play("rambro_run")
 		elif state == GlobalInfo.Unit_state.Dash:
-			ram_anim.play("rambro_dash")
+			#ram_anim.play("rambro_dash")
+			pass
 			
 		
 		if sign(ram_sprite.scale.x) != sign (velocity.x) and velocity.x != 0:
@@ -170,4 +171,4 @@ func start(pos):
 #Переключает хитбоксы для i-фреймов
 func set_hitboxes(value):
 	$CollisionShape2D.set_deferred("disabled", not value)
-	$DetectionArea/CollisionShape2D.set_deferred("disabled", not value)
+	$DetectionArea/polygon.set_deferred("disabled", not value)

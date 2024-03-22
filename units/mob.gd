@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends CharacterBody2D
 
 @export var max_hp = 1000
 @export var movement_speed = 100
@@ -7,9 +7,12 @@ extends RigidBody2D
 @onready var player = get_tree().get_first_node_in_group("player")
 
 
-func _on_body_entered(body):
+
+func _on_area_2d_area_entered(area):
+	var body = area.owner
 	if body.is_in_group("player_projectiles"):
 		$HpController.modify_hp(body.damage, GlobalInfo.HP_modifier_type.Flat)
+	
 
 
 #Mob dead
@@ -26,8 +29,10 @@ func _on_hp_controller_hp_zero():
 func _process(_delta):
 	var direction = global_position.direction_to(player.global_position)
 	var speed_modifier = (1 + GlobalInfo.mob_movespeed_increase_per_second_percents * GlobalInfo.accumulated_time / 100.0)
-	linear_velocity = direction * movement_speed * speed_modifier
+	velocity = direction * movement_speed * speed_modifier
+	
 	mob_animation()
+	move_and_slide()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,15 +42,22 @@ func _ready():
 
 
 func mob_animation():
-	if linear_velocity.length() > 0:
+	if velocity.length() > 0:
 		$AnimatedSprite2D.play()
 	else:
 		$AnimatedSprite2D.stop()
 	
-	if linear_velocity.x < 0:
+	if velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true
 	else:
 		$AnimatedSprite2D.flip_h = false
+
+
+
+
+
+
+
 
 
 

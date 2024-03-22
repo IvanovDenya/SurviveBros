@@ -25,10 +25,12 @@ func objects_to_spawn():
 		var rng_rotation = GlobalF.get_random_rotation_radians()
 		bullet.rotation = rng_rotation
 		var velocity = Vector2(bullet.travel_speed, 0.0)
-		bullet.linear_velocity = velocity.rotated(rng_rotation)
+		bullet.velocity = velocity.rotated(rng_rotation)
 		spawn_arr.append(bullet)
 	
-	var estimated_wait_time =  base_cooldown_seconds*self_attack_speed_modifier/user.current_attack_speed
+	var base_wait_time = base_cooldown_seconds/ user.base_attack_speed
+	var user_as_mod = (user.current_attack_speed / user.base_attack_speed) - 1
+	var estimated_wait_time = base_wait_time * (1 + user_as_mod * ext_attack_speed_modifier)
 	if estimated_wait_time < 0.1:
 		$Cooldown.wait_time = 0.1
 		attack_loop_count = int(0.1 / estimated_wait_time)

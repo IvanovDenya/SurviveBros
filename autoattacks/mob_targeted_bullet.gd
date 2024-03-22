@@ -22,15 +22,19 @@ func objects_to_spawn():
 		var velocity = Vector2(bullet.travel_speed, 0.0)
 		var target = find_closest_mob(bullet)
 		if target == null:
-			bullet.linear_velocity = velocity.rotated(GlobalF.get_random_rotation_radians());
+			var random_totation = GlobalF.get_random_rotation_radians()
+			bullet.velocity = velocity.rotated(random_totation);
+			bullet.rotation = random_totation
 		else:
 			var direction = bullet.global_position.direction_to(target.global_position)
-			bullet.linear_velocity = direction * bullet.travel_speed
+			bullet.velocity = direction * bullet.travel_speed
 			bullet.rotation = bullet.global_position.angle_to_point(target.global_position)
 			bullet.target = target
 		spawn_arr.append(bullet)
 	
-	var estimated_wait_time =  base_cooldown_seconds*self_attack_speed_modifier/user.current_attack_speed
+	var base_wait_time = base_cooldown_seconds/ user.base_attack_speed
+	var user_as_mod = (user.current_attack_speed / user.base_attack_speed) - 1
+	var estimated_wait_time = base_wait_time * (1 + user_as_mod * ext_attack_speed_modifier)
 	if estimated_wait_time < 0.1:
 		$Cooldown.wait_time = 0.1
 		attack_loop_count = int(0.1 / estimated_wait_time)

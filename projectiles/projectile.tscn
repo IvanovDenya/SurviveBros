@@ -1,20 +1,24 @@
 [gd_scene load_steps=2 format=3 uid="uid://jcukvd5u2y7"]
 
-[ext_resource type="Script" path="res://projectiles/bullet_1.gd" id="1_bjia7"]
+[ext_resource type="Script" path="res://projectiles/projectile.gd" id="1_rohcf"]
 
-[node name="Projectile" type="RigidBody2D"]
+[node name="Projectile" type="CharacterBody2D"]
 z_index = 90
-max_contacts_reported = 1
-contact_monitor = true
-script = ExtResource("1_bjia7")
+collision_layer = 0
+script = ExtResource("1_rohcf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(12, 0)
+position = Vector2(-9.53674e-07, 0)
 scale = Vector2(2.6, 3.6)
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="TargetDetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetDetectionArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
