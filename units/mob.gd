@@ -17,12 +17,16 @@ func _on_area_2d_area_entered(area):
 
 #Mob dead
 func _on_hp_controller_hp_zero():
-	var to_spawn = $XpSpawner.get_spawning_xp_objects(xp_dropped, position, 50)
-	for spawning_object in to_spawn:
-		var main_scene = get_tree().get_first_node_in_group("main")
-		main_scene.call_deferred("add_child", spawning_object)
-	queue_free()
+	die()
 
+func die(drop_xp = true):
+	if drop_xp:
+		var to_spawn = $XpSpawner.get_spawning_xp_objects(xp_dropped, position, 50)
+		for spawning_object in to_spawn:
+			var main_scene = get_tree().get_first_node_in_group("main")
+			main_scene.call_deferred("add_child", spawning_object)
+	GlobalVar.current_mobs -= 1
+	queue_free()
 
 func _on_update_move_timer_timeout():
 	var direction = global_position.direction_to(player.global_position)
@@ -63,4 +67,18 @@ func mob_animation():
 
 
 
+#despawn logic
 
+
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	$DespawnTimer.stop()
+	
+
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	$DespawnTimer.start()
+
+
+func _on_despawn_timer_timeout():
+	die(false)

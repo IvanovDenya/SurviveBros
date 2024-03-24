@@ -67,18 +67,18 @@ func _ready():
 	pass # Replace with function body.
 
 func spawn_mob(mob_spawn_info):
-	var mobs = get_tree().get_nodes_in_group("Mobs")
-	if mobs.size() > GlobalInfo.max_mob_count:
-		return
 	
 	mob_spawn_info.spawn_delay_counter = 0
 	var new_mob = mob_spawn_info.mob	
 	var base_num = mob_spawn_info.mob_num
 	var final_num = base_num + floor(base_num *  GlobalInfo.mob_spawn_rate_increase_per_second_percents * accumulated_time / 100.0)
 	final_num = min(GlobalInfo.max_spawn_rate_percents / 100.0 * base_num, final_num)
-	
+	#make sure we dont go over spawn linit
+	final_num = min(final_num, GlobalInfo.max_mob_count - GlobalVar.current_mobs)
+		
 	for i in final_num:
 		var mob = new_mob.instantiate()
 		mob.global_position = get_random_position()
 		add_child(mob)
+	GlobalVar.current_mobs += final_num
 

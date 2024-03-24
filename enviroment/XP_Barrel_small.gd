@@ -12,4 +12,14 @@ func _process(_delta):
 
 
 func _on_area_entered(_area):
+	GlobalVar.current_xp_objects -= 1
+	GlobalVar.current_visible_xp_objects -= 1
 	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered():
+	GlobalVar.current_visible_xp_objects += 1
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	GlobalVar.current_visible_xp_objects -= 1

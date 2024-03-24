@@ -8,8 +8,8 @@ signal lvl_up
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#easy_mode()
-	normal_mode()
+	easy_mode()
+	#normal_mode()
 	current_threshold = lvl_thresholds[0]
 	current_lvl = 0
 	current_xp = 0
@@ -22,6 +22,15 @@ func easy_mode():
 	lvl_thresholds.append(2)
 	lvl_thresholds.append(3)
 	lvl_thresholds.append(3)
+	lvl_thresholds.append(3)
+	lvl_thresholds.append(3)
+	lvl_thresholds.append(3)
+	lvl_thresholds.append(3)
+	lvl_thresholds.append(3)
+	lvl_thresholds.append(3)
+	lvl_thresholds.append(3)
+	lvl_thresholds.append(3)
+	
 	lvl_thresholds.append(9999999)
 
 func normal_mode():

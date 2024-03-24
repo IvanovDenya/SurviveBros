@@ -71,11 +71,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qgtcg"]
-radius = 12.0
-height = 24.0
+radius = 16.3333
+height = 32.6667
 
 [node name="Mob" type="CharacterBody2D" groups=["Mobs", "mobs"]]
 z_index = 50
+scale = Vector2(1.5, 1.5)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_ebpeh")
@@ -88,11 +89,11 @@ animation = &"walk"
 frame_progress = 0.955569
 
 [node name="HpBar" parent="." instance=ExtResource("8_2ykid")]
-offset_left = -33.0
-offset_top = -39.0
-offset_right = 233.0
-offset_bottom = 11.0
-scale = Vector2(0.25, 0.2)
+offset_left = -32.6667
+offset_top = -28.6667
+offset_right = 233.333
+offset_bottom = 21.3333
+scale = Vector2(0.25, 0.15)
 
 [node name="HpController" parent="." instance=ExtResource("9_0kf8y")]
 
@@ -115,6 +116,15 @@ polygon = PackedVector2Array(-11.8446, 17.5315, 20.5185, 17.5315, 19.5071, -5.37
 wait_time = 0.16
 autostart = true
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
 [connection signal="hp_zero" from="HpController" to="." method="_on_hp_controller_hp_zero"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="UpdateMoveTimer" to="." method="_on_update_move_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

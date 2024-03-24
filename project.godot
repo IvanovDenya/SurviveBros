@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalInfo="*res://logic/global_info.tscn"
 GlobalF="*res://logic/global_f.tscn"
+GlobalVar="*res://logic/global_var.tscn"
 
 [display]
 
