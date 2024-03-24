@@ -35,10 +35,10 @@ position = Vector2(938, 539)
 
 [node name="HUD" parent="." instance=ExtResource("4_rh2o6")]
 
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6d3v7")
 
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_qquc5")
 
 [node name="MobSpawner" parent="." instance=ExtResource("7_av77f")]
