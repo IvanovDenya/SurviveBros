@@ -43,22 +43,18 @@ func _on_xp_controller_lvl_up():
 func _process(_delta):
 	
 	if (state == GlobalInfo.Unit_state.Idle):
-		pass
+		return
 	if (state == GlobalInfo.Unit_state.Dead):
-		pass
+		return
 	#Эта функция ТОЛЬКО устанавливает состояние игрока
 	player_dash()
 	
-	#i-фреймы от деша
-	if (state == GlobalInfo.Unit_state.Dash) and hitboxes_enabled:
-		set_hitboxes(false)
-	if (state == GlobalInfo.Unit_state.Normal) and not hitboxes_enabled:
-		set_hitboxes(true)
+	
 				
 	#Расчет velocity игрока исходя из состояния
 	player_movement()
-	#Анимация игрока исходя из velocity
-	player_animation()
+
+	player_move_animation()
 	
 	#Завершить процесс движением body
 	move_and_slide()
@@ -128,21 +124,22 @@ func enable_autoattacks():
 		autoattack.enable_attack()
 
 #Занимается анимациями. Можно менять как угодно
-func player_animation():
-	#var h_direction = Input.get_axis("move_left","move_right")
-	if current_velocity.length() > 0:
-	#if h_direction:
-		#velocity.x = h_direction * speed
+func player_move_animation():
+	if (state == GlobalInfo.Unit_state.Idle):
+		return
+	if (state == GlobalInfo.Unit_state.Dead):
+		return
+	if current_velocity.length() == 0 and $WalkAnimationCooldown.is_stopped():
+		ram_anim.stop()
+	if current_velocity.length() > 0 and $WalkAnimationCooldown.is_stopped():
 		if state == GlobalInfo.Unit_state.Normal:
 			ram_anim.play("rambro_run")
-		elif state == GlobalInfo.Unit_state.Dash:
+		$WalkAnimationCooldown.start()
+	if current_velocity.length() > 0:
+		if state == GlobalInfo.Unit_state.Dash:
 			ram_anim.play("rambro_dash")
-		
 		if sign(ram_sprite.scale.x) != sign (velocity.x) and velocity.x != 0:
 			ram_sprite.scale.x *= -1
-	else:
-		#velocity.x = move_toward(velocity.x, 0, speed)
-		ram_anim.stop()
 	
 
 #Задаёт плееру velocity исходя из состояния
@@ -155,6 +152,11 @@ func player_movement():
 func player_dash():
 	if Input.is_action_pressed("player_dash"):
 		$Dash.execute(self)
+	#i-фреймы от деша
+	if (state == GlobalInfo.Unit_state.Dash) and hitboxes_enabled:
+		set_hitboxes(false)
+	if (state == GlobalInfo.Unit_state.Normal) and not hitboxes_enabled:
+		set_hitboxes(true)
 
 #Начало деятельности игрока
 func start(pos):
@@ -166,3 +168,5 @@ func start(pos):
 #Переключает хитбоксы для i-фреймов
 func set_hitboxes(value):
 	hitboxes_enabled = value
+
+	

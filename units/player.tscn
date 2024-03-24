@@ -254,5 +254,9 @@ libraries = {
 "": SubResource("AnimationLibrary_3d3qp")
 }
 
+[node name="WalkAnimationCooldown" type="Timer" parent="."]
+wait_time = 0.16
+one_shot = true
+
 [connection signal="area_entered" from="MobDetection" to="." method="_on_detection_area_area_entered"]
 [connection signal="lvl_up" from="XpController" to="." method="_on_xp_controller_lvl_up"]
