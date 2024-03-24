@@ -23,3 +23,4 @@ func execute(target):
 		
 func _on_end_dash_timer_timeout():
 	user.state = GlobalInfo.Unit_state.Normal
+	user.walk_animation_timer.stop()

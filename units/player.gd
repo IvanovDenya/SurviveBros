@@ -4,6 +4,7 @@ signal spawn_something(to_spawn)
 
 @onready var ram_anim = $AnimationPlayer
 @onready var ram_sprite = $Rambro
+@onready var walk_animation_timer = $WalkAnimationCooldown
 #Базовая скорость
 @export var speed = 300
 #Скорость в деше
@@ -129,12 +130,12 @@ func player_move_animation():
 		return
 	if (state == GlobalInfo.Unit_state.Dead):
 		return
-	if current_velocity.length() == 0 and $WalkAnimationCooldown.is_stopped():
+	if current_velocity.length() == 0 and walk_animation_timer.is_stopped():
 		ram_anim.stop()
-	if current_velocity.length() > 0 and $WalkAnimationCooldown.is_stopped():
+	if current_velocity.length() > 0 and walk_animation_timer.is_stopped():
 		if state == GlobalInfo.Unit_state.Normal:
 			ram_anim.play("rambro_run")
-		$WalkAnimationCooldown.start()
+		walk_animation_timer.start()
 	if current_velocity.length() > 0:
 		if state == GlobalInfo.Unit_state.Dash:
 			ram_anim.play("rambro_dash")
