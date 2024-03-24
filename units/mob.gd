@@ -32,7 +32,7 @@ func _on_update_move_timer_timeout():
 	var direction = global_position.direction_to(player.global_position)
 	var speed_modifier = (1 + GlobalInfo.mob_movespeed_increase_per_second_percents * GlobalInfo.accumulated_time / 100.0)
 	current_velocity = direction * movement_speed * speed_modifier
-	#mob_animation()
+	mob_animation()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -47,10 +47,10 @@ func _ready():
 
 
 func mob_animation():
-	if velocity.length() > 0:
-		$AnimatedSprite2D.play()
-	else:
-		$AnimatedSprite2D.stop()
+	#if velocity.length() > 0:
+		#$AnimatedSprite2D.play()
+	#else:
+		#$AnimatedSprite2D.stop()
 	
 	if velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true
