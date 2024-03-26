@@ -1,74 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dq5ftmmtapqpg"]
+[gd_scene load_steps=6 format=3 uid="uid://dq5ftmmtapqpg"]
 
 [ext_resource type="Script" path="res://units/mob.gd" id="1_ebpeh"]
-[ext_resource type="Texture2D" uid="uid://cy3bokprm818d" path="res://assets/textures/enemies/mookDog_anim.png" id="2_cb56y"]
 [ext_resource type="PackedScene" uid="uid://b66tg6w44nvuc" path="res://logic/XP_Spawner.tscn" id="6_oswkd"]
 [ext_resource type="PackedScene" uid="uid://dheuhn4kvwdb4" path="res://hud/hp_bar.tscn" id="8_2ykid"]
 [ext_resource type="PackedScene" uid="uid://cj1uchh01eyqh" path="res://logic/hp_controller.tscn" id="9_0kf8y"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_85ara"]
-atlas = ExtResource("2_cb56y")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wg6lf"]
-atlas = ExtResource("2_cb56y")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_antfo"]
-atlas = ExtResource("2_cb56y")
-region = Rect2(64, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mgjv2"]
-atlas = ExtResource("2_cb56y")
-region = Rect2(96, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7xjdx"]
-atlas = ExtResource("2_cb56y")
-region = Rect2(128, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nm67x"]
-atlas = ExtResource("2_cb56y")
-region = Rect2(160, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_af4tm"]
-atlas = ExtResource("2_cb56y")
-region = Rect2(192, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dkaah"]
-atlas = ExtResource("2_cb56y")
-region = Rect2(224, 32, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_x1lww"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_85ara")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wg6lf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_antfo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mgjv2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7xjdx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nm67x")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_af4tm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dkaah")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 15.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qgtcg"]
 radius = 16.3333
@@ -84,9 +19,7 @@ script = ExtResource("1_ebpeh")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-6, -10)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_x1lww")
 animation = &"walk"
-frame_progress = 0.955569
 
 [node name="HpBar" parent="." instance=ExtResource("8_2ykid")]
 offset_left = -32.6667
@@ -106,11 +39,6 @@ shape = SubResource("CapsuleShape2D_qgtcg")
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 8
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2(-9.2883, 1.16053)
-scale = Vector2(0.988782, 0.960526)
-polygon = PackedVector2Array(-11.8446, 17.5315, 20.5185, 17.5315, 19.5071, -5.37261, 24.5639, -8.4959, 20.5185, -15.7836, 9.39368, -15.7836, -6.78785, 0.873969)
 
 [node name="UpdateMoveTimer" type="Timer" parent="."]
 wait_time = 0.16

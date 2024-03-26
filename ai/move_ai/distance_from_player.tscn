@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcyu5w3ibcfs4"]
+
+[ext_resource type="Script" path="res://ai/move_ai/distance_from_player.gd" id="1_nk4xm"]
+
+[node name="DistanceFromPlayer" type="Node"]
+script = ExtResource("1_nk4xm")

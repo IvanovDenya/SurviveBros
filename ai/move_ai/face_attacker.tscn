@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnv87lwar3sdv"]
+
+[ext_resource type="Script" path="res://ai/move_ai/face_attacker.gd" id="1_i1re2"]
+
+[node name="FaceAttacker" type="Node"]
+script = ExtResource("1_i1re2")

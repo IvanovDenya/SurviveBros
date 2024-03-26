@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp4spkfn6nti3"]
+
+[ext_resource type="PackedScene" uid="uid://dq5ftmmtapqpg" path="res://units/mob.tscn" id="1_222k8"]
+[ext_resource type="Script" path="res://units/dog.gd" id="2_bibr8"]
+[ext_resource type="SpriteFrames" uid="uid://dlth5tjpksij" path="res://assets/textures/enemies/mob.tres" id="3_gyar3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3pm1k"]
+radius = 15.6702
+
+[node name="Dog" instance=ExtResource("1_222k8")]
+script = ExtResource("2_bibr8")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = ExtResource("3_gyar3")
+
+[node name="CollisionShape2D" parent="." index="4"]
+shape = SubResource("CircleShape2D_3pm1k")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
+position = Vector2(-9.2883, 1.16053)
+scale = Vector2(0.988782, 0.960526)
+polygon = PackedVector2Array(-11.8446, 17.5315, 20.5185, 17.5315, 19.5071, -5.37261, 24.5639, -8.4959, 20.5185, -15.7836, 9.39368, -15.7836, -6.78785, 0.873969)

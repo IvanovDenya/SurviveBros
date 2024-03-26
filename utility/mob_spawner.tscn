@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://caet17xd7u43a"]
 
 [ext_resource type="Script" path="res://utility/mob_spawner.gd" id="1_x7y3s"]
-[ext_resource type="PackedScene" uid="uid://dq5ftmmtapqpg" path="res://units/mob.tscn" id="2_nhl42"]
+[ext_resource type="PackedScene" uid="uid://enrxodbao43q" path="res://units/dog.tscn" id="2_40vkd"]
 [ext_resource type="Script" path="res://utility/spawn_info.gd" id="2_qjp20"]
 
 [sub_resource type="Resource" id="Resource_x2wg6"]
 script = ExtResource("2_qjp20")
 time_start = 0
 time_end = 99999
-mob = ExtResource("2_nhl42")
+mob = ExtResource("2_40vkd")
 mob_num = 2
 mob_spawn_delay = 1
 

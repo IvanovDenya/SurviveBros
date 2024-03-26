@@ -3,10 +3,9 @@ extends CharacterBody2D
 @export var max_hp = 1000
 @export var movement_speed = 100
 @export var xp_dropped = 2
-
-@onready var player = get_tree().get_first_node_in_group("player")
-
 var current_velocity = Vector2.ZERO
+
+var move_ai = null
 
 func _on_area_2d_area_entered(area):
 	var body = area.owner
@@ -29,9 +28,8 @@ func die(drop_xp = true):
 	queue_free()
 
 func _on_update_move_timer_timeout():
-	var direction = global_position.direction_to(player.global_position)
-	var speed_modifier = (1 + GlobalInfo.mob_movespeed_increase_per_second_percents * GlobalInfo.accumulated_time / 100.0)
-	current_velocity = direction * movement_speed * speed_modifier
+	
+	current_velocity = move_ai.get_velocity()
 	mob_animation()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,13 +42,15 @@ func _ready():
 	var mob_types = $AnimatedSprite2D.sprite_frames.get_animation_names()
 	$AnimatedSprite2D.play(mob_types[randi() % mob_types.size()])
 	$HpController.set_initial_hp($HpBar, max_hp)
+	
+	set_move_ai()
 
 
 func mob_animation():
-	#if velocity.length() > 0:
-		#$AnimatedSprite2D.play()
-	#else:
-		#$AnimatedSprite2D.stop()
+	if velocity.length() > 10: #more than 10 px a sec
+		$AnimatedSprite2D.play()
+	else:
+		$AnimatedSprite2D.stop()
 	
 	if velocity.x < 0:
 		$AnimatedSprite2D.flip_h = true
@@ -59,11 +59,13 @@ func mob_animation():
 
 
 
-
-
-
-
-
+func set_move_ai():
+	#var move_ai_path = load("res://ai/move_ai/face_attacker.tscn")
+	var move_ai_path = load("res://ai/move_ai/distance_from_player.tscn")
+	move_ai = move_ai_path.instantiate()
+	#move_ai.init(self)
+	move_ai.init(self, 400)
+	add_child(move_ai)
 
 
 
